@@ -1,0 +1,304 @@
+---
+title: "[Tuto{{< fa brands r-project >}}ial - Part 1]{.no-print} [TutoRial - Part 1]{.print-only}"
+subtitle: "Marine Ecosystem Dynamics - 2024"
+author: "Kinlan M.G. Jan"
+format:
+  html:
+    html-math-method: katex
+    toc: true
+    toc-title: "Tuto{{< fa brands r-project >}}ial 1"
+    toc-depth: 3
+  pdf:
+    pdf-engine: weasyprint
+css: tutorial.css
+format-links: [pdf]
+---
+
+:::{.no-print}
+
+## New script
+
+As seen during the presentation, we will keep track of our progress. We thus need to open a new script following one of the option below.
+
+```{mermaid}
+flowchart LR
+  A[1. File] --> B[2. New File]
+  B --> C[3. R script]
+```
+
+```{mermaid}
+flowchart LR
+  A["⌘/Ctlr + ⇧ + N"]
+```
+
+:::
+
+
+## [{{< fa brands r-project >}} syntax]{.no-print} [**R** syntax]{.print-only}
+
+[{{< fa brands r-project >}} is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it.]{.no-print}
+[**R** is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it.]{.print-only}
+
+But first some syntax information:
+
+-   Everything after `#` is considered as a comment and will not be executed. It is very important to write what we are doing, so we do not get lost next time we open our scripts.
+
+```{r}
+#| echo: true
+#| eval: true
+
+# 2 + 2 will not work because of the #
+2 + 2 # We should then annotate our script like this
+```
+
+-   Several lines of code can be written in one line but must be separated by a semicolon
+
+```{r}
+#| echo: true
+#| eval: true
+2 + 2
+3 * 2
+
+# This can also be written as follow:
+2 + 2 ; 3 * 2
+```
+
+-   [In {{< fa brands r-project >}} we can name any object using `=`, `<-`, `->` or `assign`]{.no-print} [In **R** we can name any object using `=`, `<-`, `->` or `assign`]{.print-only}
+
+```{r}
+#| echo: true
+#| eval: true
+c(1, 2, 3, 4) -> my_first_vector
+my_vector <- c(1, 2, 3, 4)
+my_function = function(x){x + 2}
+assign("x", c(2, 3, 4, 5))
+```
+
+-   `==` is a logical function that can be translated as *is equal to*, contrarily *is not equal to* is written `!=`
+
+```{r}
+#| echo: true
+#| eval: true
+2 + 2 == 4
+3 * 2 == 4
+3 * 2 != 4
+```
+
+
+### Exercises
+
+[Using a new {{< fa brands r-project >}} script, do these calculations:]{.no-print}
+[Using a new **R** script, do these calculations:]{.print-only}
+
+  -   $\ 2^7$
+
+:::{.no-print}
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+2^7
+```
+:::
+
+:::
+
+  -   $\ cos(\pi)$
+
+:::{.no-print}
+
+::: {.callout-tip collapse="true" title="Hint"}
+```{r}
+#| echo: true
+#| eval: false
+?cos()
+?pi()
+```
+:::
+
+:::
+
+:::{.no-print}
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+cos(pi)
+```
+:::
+
+:::
+
+  - The sum of all number from 1 to 100
+
+:::{.no-print}
+
+::: {.callout-tip collapse="true" title="Hint"}
+Operations can take place for an entire vector
+:::
+
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+vector <- seq(from = 1, to = 100, by = 1) # Create a vector from 1 to 100
+sum(vector) # Calculate the sum
+```
+:::
+
+:::
+
+Create a parameter `x1` that equals to 5 and a parameter `x2` that equals to 10
+
+:::{.no-print}
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+x1 <- 5 ; x2 <-  10
+```
+:::
+:::
+
+-  Is $\ 2*$ `x1` equal to `x2`?
+
+:::{.no-print}
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+2 * x1 == x2
+```
+:::
+:::
+
+
+
+## Functions
+
+[As seen during the lecture, {{< fa brands r-project >}} works with functions that can:]{.no-print}
+[As seen during the lecture, **R** works with functions that can:]{.print-only}
+
+-   [Already be implemented in base {{< fa brands r-project >}}]{.no-print} [Already be implemented in base **R**]{.print-only}
+-   Comming from another package
+-   Created by the user
+
+We will see these three examples in this section, but first it is important to remember that the typical structure of a function is `function(argument1, ...)`.
+
+[Fortunately {{< fa brands r-project >}} helps us to remember what are the needed `arguments`:]{.no-print}
+[Fortunately **R** helps us to remember what are the needed `arguments`:]{.print-only}
+
+-   Using `help()` or `?`
+
+:::{.no-print}
+```{r}
+#| echo: true
+#| eval: false
+help(topic = "sin")
+?sin
+```
+:::
+
+-   Using `example`
+
+:::{.no-print}
+```{r}
+#| echo: true
+#| eval: true
+example(sum)
+```
+:::
+
+For the functions that comes from external packages, we first need to install the new packages. The most common way to do so is by executing `install.packages("Package_Name")`. Then when we want to load the functions, we start the script by executing `library(Package_Name)`.
+
+Finally, if we really do not find a suitable function in a package, we can create your functions following this general structure, but this will not be covered in this tutorial:
+
+```{r}
+#| echo: true
+#| eval: false
+my_function <- function(<argument1>, <argument2>, ...){
+  <here comes the definition of my function>
+  return(<output of the definition>)
+}
+```
+
+### Exercises
+
+[-   What is the function `log()` doing and from were does this function come from (base {{< fa brands r-project >}}, other packages)?]{.no-print}
+[-   What is the function `log()` doing and from were does this function come from (base **R**, other packages)?]{.print-only}
+
+
+:::{.no-print}
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+?log() #It takes the natural logarithm of the value, it comes from base R
+log(10) 
+```
+:::
+:::
+
+-   What are the mandatory arguments for the function `plot()`
+
+:::{.no-print}
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+?plot() # the coordinates points x and y are needed
+```
+:::
+:::
+
+
+-   Is there help associated with the functions from a loaded package?
+
+:::{.no-print}
+::: {.callout-tip collapse="true" title="Hint"}
+The function `ggplot()` comes from the package `ggplot2`
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+library(ggplot2)
+?ggplot # Yes, there is also help for the imported functions
+```
+:::
+
+::: {.callout title="Optional exercises"}
+-   Create a function that print `Hello World!` when executing it
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+Hello <- function(){
+  cat("Hello World!") # print("Hello World!") works too
+}
+Hello()
+```
+:::
+
+-   Create a function that multiply the input by 4
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+multiplyeR <- function(x, y = 4){
+  return(x * y)
+}
+multiplyeR(x = 2) # It works with values
+multiplyeR(x = seq(1, 3, 1)) # But also vectors
+```
+:::
+:::
+:::
+
