@@ -7,7 +7,7 @@ toc: false
 
 #### September 2024
 
-On this website, material for the introduction to R are stored.
+On this website, material for the introduction to R are made available.
 
 In the [MATERIAL](MATERIAL/index.qmd){.button} tab, slides and exercises can be found.
 
