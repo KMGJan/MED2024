@@ -11,8 +11,6 @@ format:
     show-slide-number: all
     chalkboard: true
     logo: "/assets/images/SU_black.svg"
-  beamer:
-    pdf-engine: xelatex
 ---
 
 ## Plan for today's lecture
