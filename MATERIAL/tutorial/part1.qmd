@@ -524,3 +524,88 @@ str(df)
 head(df)
 tail(df)
 ```
+
+### Exercises
+
+```{r, echo=FALSE, results='asis'}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+
+if (knitr::is_html_output()) {
+  library("downloadthis");library(PlanktonData)
+  data(zooplankton)
+  zooplankton  |> 
+    download_this(
+    output_name = "zooplankton_seasonality",
+    output_extension = ".csv",
+    button_label = " Click here to download the dataset zooplankton_seasonality.csv",
+    button_type = "primary",
+    has_icon = TRUE,
+    csv2 = FALSE,
+    icon = "fa fa-save")
+} else {
+  cat("You can download the dataset on [GitHub](https://kmgjan.github.io/MED2024/MATERIAL/Part1/tutorial/assets)")
+}
+```
+
+
+
+* Import the dataset in your environment
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+df <- read.csv("./assets/zooplankton_seasonality.csv")
+```
+:::
+:::
+
+
+ * How many rows and columns does this dataset contain?
+ 
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+
+The structure of the dataset shows that there is 7 variables (columns) and 2956 observations (rows)
+
+```{r}
+#| echo: true
+#| eval: true
+str(df)
+```
+:::
+:::
+
+ * What are the headers of the columns?
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+
+Both the stucture and the head show that the headers are: `Month_abb`, `Year`, `Station`, `Coordinates`, `Group`, `Taxa`, `Biomass`
+
+```{r}
+#| echo: true
+#| eval: true
+head(df)
+```
+
+:::
+:::
+
+ * What is the last row?
+ 
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+To see the last row, use the `tail` function
+
+```{r}
+#| echo: true
+#| eval: true
+tail(df)
+```
+:::
+:::

@@ -7,18 +7,67 @@
     "text": "Marine Ecosystem Dynamics\n\nSeptember 2024\nOn this website, material for the introduction to R are made available.\nIn the MATERIAL tab, slides and exercises can be found.\n\nDuring this introduction, we will learn how to use  in  to handle data.\nInstall R and R studio before the start of the lecture !\n\n\n\n\n\n\nDay 1\n\nR syntax\nImport Data\n\n\n\n\nDay 2\n\nPipe the data using magrittr\nTidy the data using tidyr\nArrange the data using dplyr\nVisualise the data using ggplot2\n\n\n\n\nThe data we will use are all available in the package PlanktonData"
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n#&gt; [1] 2"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part1.html",
+    "href": "MATERIAL/tutorial/part1.html",
+    "title": "Tutoial - Part 1 TutoRial - Part 1",
+    "section": "",
+    "text": "As seen during the presentation, we will keep track of our progress. We thus need to open a new script following one of the option below.\n\n\n\n\nflowchart LR\n  A[1. File] --&gt; B[2. New File]\n  B --&gt; C[3. R script]\n\n\n\n\n\n\n\n\n\nflowchart LR\n  A[\"⌘/Ctlr + ⇧ + N\"]"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part1.html#new-script",
+    "href": "MATERIAL/tutorial/part1.html#new-script",
+    "title": "Tutoial - Part 1 TutoRial - Part 1",
+    "section": "",
+    "text": "As seen during the presentation, we will keep track of our progress. We thus need to open a new script following one of the option below.\n\n\n\n\nflowchart LR\n  A[1. File] --&gt; B[2. New File]\n  B --&gt; C[3. R script]\n\n\n\n\n\n\n\n\n\nflowchart LR\n  A[\"⌘/Ctlr + ⇧ + N\"]"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part1.html#fa-brands-r-project-syntax-r-syntax",
+    "href": "MATERIAL/tutorial/part1.html#fa-brands-r-project-syntax-r-syntax",
+    "title": "Tutoial - Part 1 TutoRial - Part 1",
+    "section": " syntax R syntax",
+    "text": "syntax R syntax\n is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it. R is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it.\nBut first some syntax information:\n\nEverything after # is considered as a comment and will not be executed. It is very important to write what we are doing, so we do not get lost next time we open our scripts.\n\n\n# 2 + 2 will not work because of the #\n2 + 2 # We should then annotate our script like this\n#&gt; [1] 4\n\n\nSeveral lines of code can be written in one line but must be separated by a semicolon\n\n\n2 + 2\n#&gt; [1] 4\n3 * 2\n#&gt; [1] 6\n\n# This can also be written as follow:\n2 + 2 ; 3 * 2\n#&gt; [1] 4\n#&gt; [1] 6\n\n\nIn  we can name any object using =, &lt;-, -&gt; or assign In R we can name any object using =, &lt;-, -&gt; or assign\n\n\nc(1, 2, 3, 4) -&gt; my_first_vector\nmy_vector &lt;- c(1, 2, 3, 4)\nmy_function = function(x){x + 2}\nassign(\"x\", c(2, 3, 4, 5))\n\n\n== is a logical function that can be translated as is equal to, contrarily is not equal to is written !=\n\n\n2 + 2 == 4\n#&gt; [1] TRUE\n3 * 2 == 4\n#&gt; [1] FALSE\n3 * 2 != 4\n#&gt; [1] TRUE\n\n\nExercises\nUsing a new  script, do these calculations: Using a new R script, do these calculations:\n\n\\ 2^7\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2^7\n#&gt; [1] 128\n\n\n\n\n\n\n\\ cos(\\pi)\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\n\n?cos()\n?pi()\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncos(pi)\n#&gt; [1] -1\n\n\n\n\n\n\nThe sum of all number from 1 to 100\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nOperations can take place for an entire vector\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nvector &lt;- seq(from = 1, to = 100, by = 1) # Create a vector from 1 to 100\nsum(vector) # Calculate the sum\n#&gt; [1] 5050\n\n\n\n\n\nCreate a parameter x1 that equals to 5 and a parameter x2 that equals to 10\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nx1 &lt;- 5 ; x2 &lt;-  10\n\n\n\n\n\n\nIs \\ 2* x1 equal to x2?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2 * x1 == x2\n#&gt; [1] TRUE"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part1.html#functions",
+    "href": "MATERIAL/tutorial/part1.html#functions",
+    "title": "Tutoial - Part 1 TutoRial - Part 1",
+    "section": "Functions",
+    "text": "Functions\nAs seen during the lecture,  works with functions that can: As seen during the lecture, R works with functions that can:\n\nAlready be implemented in base  Already be implemented in base R\nComming from another package\nCreated by the user\n\nWe will see these three examples in this section, but first it is important to remember that the typical structure of a function is function(argument1, ...).\nFortunately  helps us to remember what are the needed arguments: Fortunately R helps us to remember what are the needed arguments:\n\nUsing help() or ?\n\n\n\nhelp(topic = \"sin\")\n?sin\n\n\n\nUsing example\n\n\n\nexample(sum)\n#&gt; \n#&gt; sum&gt; ## Pass a vector to sum, and it will add the elements together.\n#&gt; sum&gt; sum(1:5)\n#&gt; [1] 15\n#&gt; \n#&gt; sum&gt; ## Pass several numbers to sum, and it also adds the elements.\n#&gt; sum&gt; sum(1, 2, 3, 4, 5)\n#&gt; [1] 15\n#&gt; \n#&gt; sum&gt; ## In fact, you can pass vectors into several arguments, and everything gets added.\n#&gt; sum&gt; sum(1:2, 3:5)\n#&gt; [1] 15\n#&gt; \n#&gt; sum&gt; ## If there are missing values, the sum is unknown, i.e., also missing, ....\n#&gt; sum&gt; sum(1:5, NA)\n#&gt; [1] NA\n#&gt; \n#&gt; sum&gt; ## ... unless  we exclude missing values explicitly:\n#&gt; sum&gt; sum(1:5, NA, na.rm = TRUE)\n#&gt; [1] 15\n\n\nFor the functions that comes from external packages, we first need to install the new packages. The most common way to do so is by executing install.packages(\"Package_Name\"). Then when we want to load the functions, we start the script by executing library(Package_Name).\nFinally, if we really do not find a suitable function in a package, we can create your functions following this general structure, but this will not be covered in this tutorial:\n\nmy_function &lt;- function(&lt;argument1&gt;, &lt;argument2&gt;, ...){\n  &lt;here comes the definition of my function&gt;\n  return(&lt;output of the definition&gt;)\n}\n\n\nExercises\n\nWhat is the function log() doing and from were does this function come from (base , other packages)? What is the function log() doing and from were does this function come from (base R, other packages)?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n?log() #It takes the natural logarithm of the value, it comes from base R\nlog(10) \n\n\n\n\n\n\nWhat are the mandatory arguments for the function plot()\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n?plot() # the coordinates points x and y are needed\n\n\n\n\n\n\nIs there help associated with the functions from a loaded package?\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nThe function ggplot() comes from the package ggplot2\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nlibrary(ggplot2)\n?ggplot # Yes, there is also help for the imported functions\n\n\n\n\n\n\n\n\n\n\nOptional exercises\n\n\n\n\nCreate a function that print Hello World! when executing it\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nHello &lt;- function(){\n  cat(\"Hello World!\") # print(\"Hello World!\") works too\n}\nHello()\n#&gt; Hello World!\n\n\n\n\n\nCreate a function that multiply the input by 4\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nmultiplyeR &lt;- function(x, y = 4){\n  return(x * y)\n}\nmultiplyeR(x = 2) # It works with values\n#&gt; [1] 8\nmultiplyeR(x = seq(1, 3, 1)) # But also vectors\n#&gt; [1]  4  8 12"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part1.html#vectors",
+    "href": "MATERIAL/tutorial/part1.html#vectors",
+    "title": "Tutoial - Part 1 TutoRial - Part 1",
+    "section": "Vectors",
+    "text": "Vectors\n works with vector from which we can do our calculations. R works with vector from which we can do our calculations. Several ways exist to create a vector:\n\nUsing c(), values are added next to each other and separated with a ,.\n\n\nc(1, 2, 1, 4) # It works with integers (round numbers)\nc(1.1, 2.4, 3.14652) # It works with floats (decimal numbers)\nc(\"chocolate\", \"ice-cream\") # It works with character\nc(TRUE, FALSE) # It works with logical variables\n\n\nUsing rep() to repeat the same values several times.\n\n\nrep(x = 3, 2) # it reads: repeat 2 times the value x that is equal to 3\nrep(x = \"chocolate\", 3) # it reads: repeat 3 times the value x that is equal to \"chocolate\"\n\n\nUsing seq() to create a sequence of values. It only works for numeric values!\n\n\nseq(from = 0, to = 10, by = 2) # it reads: create a sequence of values from 0 to 10 every 2 numbers\nseq(from = -1, to = 1, by = 0.2) # it also works with negative values and decimal\n\n\nCombining all of the above\n\n\nrep(x = c(seq(from = 2, to = 3, by = 0.2), 5), 2)\nc(rep(x = \"character\", 5), \"other character\")\nc(seq(from = 2, to = 10, by = 2), rep(x = 1000, 2), c(1, 4, 2))\n\n\nExercises\n\nCreate a vector v1 that contains the values 1, 2, 3, 4, 6\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv1 &lt;- c(1, 2, 3, 4, 6)\n\n\n\n\n\n\nCreate a vector v2 that contains 10 times the values 1, 2, 3, 4, 6\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv2 &lt;- rep(v1, 10)\n\n\n\n\n\n\nCreate a vector v3 that repeats TRUE, FALSE 2 times\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv3 &lt;- rep(c(TRUE, FALSE), 2)\n\n\n\n\n\n\nCreate a vector v4 that goes from 10 to 2000\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv4 &lt;- 10:2000\n# or \nv4 &lt;- seq(from  = 10, to = 2000, by = 1)\n\n\n\n\n\n\nCreate a vector v5 that contains v1, v2, v3 and 2 times v4\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv5 &lt;- c(v1, v2, v3, rep(v4, 2))"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part1.html#dataframe",
+    "href": "MATERIAL/tutorial/part1.html#dataframe",
+    "title": "Tutoial - Part 1 TutoRial - Part 1",
+    "section": "Dataframe",
+    "text": "Dataframe\nMost likely, we will work with data stored in dataframes. A dataframe is composed of observations (rows) and variables (columns). We can see a dataframe like multiples vectors put togethers.\nFor example in the dataframe below (named df) is composed of 4 vectors:\n\nSpecies that contains the species names\nAbundance that contains the abundances of the species\nLocation that contains the location of the species\nDate that contains the sampling date\n\n\n#&gt;         Species Abundance Location       Date\n#&gt; 1       Acartia        34     Askö 03-09-2024\n#&gt; 2 Pseudocalanus        12     Askö 04-09-2024\n#&gt; 3   Centropages        17     Askö 02-09-2024\n\nWe can access the individual columns (i.e., vectors) using $\n\ndf$Species\n#&gt; [1] \"Acartia\"       \"Pseudocalanus\" \"Centropages\"\ndf$Abundance\n#&gt; [1] 34 12 17\ndf$Location\n#&gt; [1] \"Askö\" \"Askö\" \"Askö\"\ndf$Date\n#&gt; [1] \"03-09-2024\" \"04-09-2024\" \"02-09-2024\"\n\n\nExercises\n\nCreate a vector genus containing the character \"Acartia\", \"Centropages\", \"Temora\", \"Acartia\", \"Centropages\", \"Temora\"\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngenus = c(\"Acartia\", \"Centropages\", \"Temora\", \"Acartia\", \"Centropages\", \"Temora\") \n# or genus = rep(c(\"Acartia\", \"Centropages\", \"Temora\"), 2)\n\n\n\n\n\n\nCreate a vector station containing the character \"Askö\", \"Askö\", \"Askö\", \"Tjarnö\", \"Tjarnö\", \"Tjarnö\"\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nstation = c(rep(\"Askö\",3),rep(\"Tjarnö\", 3))\n\n\n\n\n\n\nCreate a vector abundance containing the values 3, 10.2, 4, 2.3, 4, 9.4\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nabundance = c(3, 10.2, 4, 2.3, 4, 9.4)\n\n\n\n\n\n\nCombine all the vectors in a dataframe called df\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ndf &lt;- data.frame(\"Genus\" = genus,\n                 \"Station\" = station,\n                 \"Abundance\" = abundance)\n\n\n\n\n\n\nCreate a vector output that correspond to the column Abundance of the dataframe df. Is output similar to the vector abundance?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\noutput &lt;- df$Abundance # or df[[3]]\noutput == abundance\n#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part1.html#importing-data-in-fa-brands-r-project-importing-data-in-r",
+    "href": "MATERIAL/tutorial/part1.html#importing-data-in-fa-brands-r-project-importing-data-in-r",
+    "title": "Tutoial - Part 1 TutoRial - Part 1",
+    "section": "Importing data in  Importing data in R",
+    "text": "Importing data in  Importing data in R\nMore often we enter our data in spreadsheets. We then need to import our data in  R to process them. To do so, we use the read.* function family.\nA typical data import protocol looks like this:\n\nSet the working directory with its absolute path\n\n\nsetwd(\"/Absolute/Path/To/Working/Directory\")\n\n\nImport your dataset in your environment\n\n\ndf &lt;- read.csv(\"./Relative/Path/Dataset.csv\")\n\n\nExamine the structure of the data to see if the importation worked well\n\n\nstr(df)\nhead(df)\ntail(df)\n\n\nExercises\n\n\n  Click here to download the dataset zooplankton_seasonality.csv\n\n\n\nImport the dataset in your environment\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ndf &lt;- read.csv(\"./assets/zooplankton_seasonality.csv\")\n\n\n\n\n\n\nHow many rows and columns does this dataset contain?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe structure of the dataset shows that there is 7 variables (columns) and 2956 observations (rows)\n\nstr(df)\n#&gt; 'data.frame':    2956 obs. of  7 variables:\n#&gt;  $ Month_abb  : chr  \"Jan\" \"Jan\" \"Jan\" \"Jan\" ...\n#&gt;  $ Year       : int  2009 2009 2009 2009 2009 2009 2009 2009 2009 2009 ...\n#&gt;  $ Station    : chr  \"BY15\" \"BY31\" \"BY5\" \"BY15\" ...\n#&gt;  $ Coordinates: chr  \"20.05000/57.33333\" \"18.23333/58.58812\" \"15.98333/55.25000\" \"20.05000/57.33333\" ...\n#&gt;  $ Group      : chr  \"Copepoda\" \"Copepoda\" \"Copepoda\" \"Copepoda\" ...\n#&gt;  $ Taxa       : chr  \"Acartia\" \"Acartia\" \"Acartia\" \"Centropages\" ...\n#&gt;  $ Biomass    : num  6.65 1.82 5.56 5.74 1.23 ...\n\n\n\n\n\n\nWhat are the headers of the columns?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nBoth the stucture and the head show that the headers are: Month_abb, Year, Station, Coordinates, Group, Taxa, Biomass\n\nhead(df)\n#&gt;   Month_abb Year Station       Coordinates    Group        Taxa   Biomass\n#&gt; 1       Jan 2009    BY15 20.05000/57.33333 Copepoda     Acartia  6.650319\n#&gt; 2       Jan 2009    BY31 18.23333/58.58812 Copepoda     Acartia  1.816994\n#&gt; 3       Jan 2009     BY5 15.98333/55.25000 Copepoda     Acartia  5.562097\n#&gt; 4       Jan 2009    BY15 20.05000/57.33333 Copepoda Centropages  5.738561\n#&gt; 5       Jan 2009    BY31 18.23333/58.58812 Copepoda Centropages  1.228759\n#&gt; 6       Jan 2009     BY5 15.98333/55.25000 Copepoda Centropages 14.405224\n\n\n\n\n\n\nWhat is the last row?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nTo see the last row, use the tail function\n\ntail(df)\n#&gt;      Month_abb Year Station       Coordinates     Group      Taxa    Biomass\n#&gt; 2951       Dec 2021    BY15 20.05000/57.33333  Copepoda    Temora 32.2266648\n#&gt; 2952       Dec 2021    BY31 18.23333/58.58812  Copepoda    Temora  7.6000062\n#&gt; 2953       Dec 2021     BY5 15.98333/55.25000  Copepoda    Temora 23.0666650\n#&gt; 2954       Dec 2021    BY15 20.05000/57.33333 Rotatoria Synchaeta  1.0400010\n#&gt; 2955       Dec 2021    BY31 18.23333/58.58812 Rotatoria Synchaeta  0.0800001\n#&gt; 2956       Dec 2021     BY5 15.98333/55.25000 Rotatoria Synchaeta  1.2900000"
+  },
+  {
     "objectID": "MATERIAL/index.html",
     "href": "MATERIAL/index.html",
     "title": "MATERIAL",
     "section": "",
     "text": "02-Sep-2023 (Saturday)\nIntroduction to R\nSlides\nTutorial\n\n\n03-Sep-2023 (Sunday)\nData manipulation and visualisation\nSlides\nTutorial"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "MATERIAL/slides/part1.html#plan-for-todays-lecture",
@@ -35,18 +84,18 @@
     "text": "Why using R?\n\n\nPro\n🤑 Free  🔓 Open source  🥼 Reproducible science\n\n# You can keep track of all the data analysis steps\n2 + 2 + 3       # step 1\n#&gt; [1] 7\nlog(2 + 2 + 3)  # step 2\n#&gt; [1] 1.94591"
   },
   {
-    "objectID": "MATERIAL/slides/part1.html",
-    "href": "MATERIAL/slides/part1.html",
+    "objectID": "MATERIAL/slides/part1.html#why-using-r-1",
+    "href": "MATERIAL/slides/part1.html#why-using-r-1",
     "title": "Introduction to R",
-    "section": "",
-    "text": "The R syntax\nThe R studio software\nVariables, functions and vectors\nImporting data using the readr package"
+    "section": "Why using R?",
+    "text": "Why using R?\n\n\nPro\n🤑 Free  🔓 Open source  🥼 Reproducible science\n\n# You can keep track of all the data analysis steps\n2 + 2 + 3       # step 1\n#&gt; [1] 7\nlog(2 + 2 + 3)  # step 2\n#&gt; [1] 1.94591\n\n\nCons\n👻 Scary  🧑‍💻 Syntax\n\nx = 1:100 ; y = log(x)\nlibrary(ggplot2)\nggplot() +\n  geom_line(mapping = aes(x = x,\n                          y = y),\n            col = \"firebrick\",\n            linewidth = 2) +\n  theme_classic()+\n  theme(axis.ticks = element_blank(),\n        axis.text = element_blank(),\n        axis.title = element_text(size = 23)) +\n  labs(x = \"Time\",\n       y = \"Skills\")"
   },
   {
-    "objectID": "MATERIAL/slides/part1.html#r-is-open-and-free",
-    "href": "MATERIAL/slides/part1.html#r-is-open-and-free",
+    "objectID": "MATERIAL/slides/part1.html#why-using-r-2",
+    "href": "MATERIAL/slides/part1.html#why-using-r-2",
     "title": "Introduction to R",
-    "section": "R is open and free",
-    "text": "R is open and free\n\nPeople have worked on it and created tools and function that anyone case use!\n\n\n\nR base functions are already accessible when we open R\nMore function from other packages 📦 can be loaded"
+    "section": "Why using R?",
+    "text": "Why using R?\n\n\nPro\n🤑 Free  🔓 Open source  🥼 Reproducible science\n\n# You can keep track of all the data analysis steps\n2 + 2 + 3       # step 1\n#&gt; [1] 7\nlog(2 + 2 + 3)  # step 2\n#&gt; [1] 1.94591\n\n\nCons\n👻 Scary  🧑‍💻 Syntax"
   },
   {
     "objectID": "MATERIAL/slides/part1.html#r-studio-is-a-great-tool-to-use-r",
@@ -54,6 +103,13 @@
     "title": "Introduction to R",
     "section": "R studio is a great tool to use R",
     "text": "R studio is a great tool to use R\nOn one window it combines:\n\nEnvironment\nConsole\nScript\nPlot, help, …"
+  },
+  {
+    "objectID": "MATERIAL/slides/part1.html#r-is-open-and-free",
+    "href": "MATERIAL/slides/part1.html#r-is-open-and-free",
+    "title": "Introduction to R",
+    "section": "R is open and free",
+    "text": "R is open and free\n\nPeople have worked on it and created tools and function that anyone case use!\n\n\n\nR base functions are already accessible when we open R\nMore function from other packages 📦 can be loaded"
   },
   {
     "objectID": "MATERIAL/slides/part1.html#how-to-install-and-load-packages",
@@ -70,76 +126,6 @@
     "text": "R syntax\n\nLike Excel, or a calculator R can help us resolve “basic” operations\n\n\n2 + 2\n#&gt; [1] 4"
   },
   {
-    "objectID": "MATERIAL/slides/part1.html#variables",
-    "href": "MATERIAL/slides/part1.html#variables",
-    "title": "Introduction to R",
-    "section": "Variables",
-    "text": "Variables\nIn R variables can be of several types:\n\nLogical: TRUEor FALSE\nNumeric: 3 or 3.2\nCharacter: \"t\", \"blue\" or \"this is a character\"\n\n\nWe can ask R what type is our variable\n\nclass(TRUE)\n#&gt; [1] \"logical\"\nclass(3)\n#&gt; [1] \"numeric\"\nclass(\"t\")\n#&gt; [1] \"character\"\nclass(pi)\n#&gt; [1] \"numeric\""
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#values",
-    "href": "MATERIAL/slides/part1.html#values",
-    "title": "Introduction to R",
-    "section": "Values",
-    "text": "Values\nIn R values can be of several categories:\n\nLogical: TRUE or FALSE\nNumeric: 3 or 3.2\nCharacter: \"t\", \"blue\" or \"this is a character\"\n\n\nWe can ask R the category of our values\n\nclass(TRUE)\n#&gt; [1] \"logical\""
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#assigning-variables",
-    "href": "MATERIAL/slides/part1.html#assigning-variables",
-    "title": "Introduction to R",
-    "section": "Assigning variables",
-    "text": "Assigning variables\nWe can create variables that contain our values.\nTo do so, use &lt;- or =\n\nvariable &lt;- value\n\n\nIf we want to create a variable x that is equal to the value 3 and y that is equal to the value \"blue\"\n\nx &lt;- 3\ny &lt;- \"blue\"\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nDo not mix with == that test if the values are equals.\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nThe opposite of == is !=\n\n\n\n\n\n\n\nThe variables are then stored in our “environment” and we can reuse them\n\nx * 2 + x^x\n#&gt; [1] 33"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#functions",
-    "href": "MATERIAL/slides/part1.html#functions",
-    "title": "Introduction to R",
-    "section": "Functions",
-    "text": "Functions\nR uses functions that all have the same structure: function_name(argument, ...)\n\nlog(argument1)\nplot(argument1, argument2, ...)\n\n\nIt is impossible to know everything by heart and what arguments are needed.\nFortunately, manuals for each function exists using ? before the function name.\n\n?log()"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#vectors",
-    "href": "MATERIAL/slides/part1.html#vectors",
-    "title": "Introduction to R",
-    "section": "Vectors",
-    "text": "Vectors\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#importing-data",
-    "href": "MATERIAL/slides/part1.html#importing-data",
-    "title": "Introduction to R",
-    "section": "Importing data",
-    "text": "Importing data\nThe best way to do so is to use: read.*(file = \"/your/file.*\", sep = \"/t\", dec = \",\")\n\n\nWhere * is:\n\ncsv - comma-separated values\ncsv2 - semicolon-separated values, with comma as the decimal mark\ndelim - any delimited files\n\n\n\n\n\nfile corresponds to the path of the file\n\n\n\n\nsep specifies the separator mark\n\n\n\n\ndec specifies the decimal mark"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#plan-for-the-next-session",
-    "href": "MATERIAL/slides/part1.html#plan-for-the-next-session",
-    "title": "Introduction to R",
-    "section": "Plan for the next session",
-    "text": "Plan for the next session\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to tidyverse\nPipe the data using magrittr\nClean the data using tidyr\nArrange the data using dplyr\nPlot using ggplot2"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#do-not-hesitate-to-use-google-to-get-help",
-    "href": "MATERIAL/slides/part1.html#do-not-hesitate-to-use-google-to-get-help",
-    "title": "Introduction to R",
-    "section": "Do not hesitate to use google to get help !",
-    "text": "Do not hesitate to use google to get help !\nIf you have an issue with something, you are probably not the first and someone asked a solution on a forum !"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#why-using-r-1",
-    "href": "MATERIAL/slides/part1.html#why-using-r-1",
-    "title": "Introduction to R",
-    "section": "Why using R?",
-    "text": "Why using R?\n\n\nPro\n🤑 Free  🔓 Open source  🥼 Reproducible science\n\n# You can keep track of all the data analysis steps\n2 + 2 + 3       # step 1\n#&gt; [1] 7\nlog(2 + 2 + 3)  # step 2\n#&gt; [1] 1.94591\n\n\nCons\n👻 Scary  🧑‍💻 Syntax\n\nx = 1:100 ; y = log(x)\nlibrary(ggplot2)\nggplot() +\n  geom_line(mapping = aes(x = x,\n                          y = y),\n            col = \"firebrick\",\n            linewidth = 2) +\n  theme_classic()+\n  theme(axis.ticks = element_blank(),\n        axis.text = element_blank(),\n        axis.title = element_text(size = 23)) +\n  labs(x = \"Time\",\n       y = \"Skills\")"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#why-using-r-2",
-    "href": "MATERIAL/slides/part1.html#why-using-r-2",
-    "title": "Introduction to R",
-    "section": "Why using R?",
-    "text": "Why using R?\n\n\nPro\n🤑 Free  🔓 Open source  🥼 Reproducible science\n\n# You can keep track of all the data analysis steps\n2 + 2 + 3       # step 1\n#&gt; [1] 7\nlog(2 + 2 + 3)  # step 2\n#&gt; [1] 1.94591\n\n\nCons\n👻 Scary  🧑‍💻 Syntax"
-  },
-  {
     "objectID": "MATERIAL/slides/part1.html#r-syntax-1",
     "href": "MATERIAL/slides/part1.html#r-syntax-1",
     "title": "Introduction to R",
@@ -152,6 +138,20 @@
     "title": "Introduction to R",
     "section": "R syntax",
     "text": "R syntax\n\nLike Excel, or a calculator R can help us resolve “basic” operations\n\n\n2 + 2\n#&gt; [1] 4\n4 * 4\n#&gt; [1] 16\n(5 + 4) / (1 - 4 ^ 2)\n#&gt; [1] -0.6"
+  },
+  {
+    "objectID": "MATERIAL/slides/part1.html#r-syntax-3",
+    "href": "MATERIAL/slides/part1.html#r-syntax-3",
+    "title": "Introduction to R",
+    "section": "R syntax",
+    "text": "R syntax\n\nLike Excel, or a calculator R can help us resolve “basic” operations\n\n\n2 + 2\n#&gt; [1] 4\n4 * 4\n#&gt; [1] 16\n(5 + 4) / (1 - 4 ^ 2)\n#&gt; [1] -0.6\n\n\nBut also more complex operations"
+  },
+  {
+    "objectID": "MATERIAL/slides/part1.html#values",
+    "href": "MATERIAL/slides/part1.html#values",
+    "title": "Introduction to R",
+    "section": "Values",
+    "text": "Values\nIn R values can be of several categories:\n\nLogical: TRUE or FALSE\nNumeric: 3 or 3.2\nCharacter: \"t\", \"blue\" or \"this is a character\"\n\n\nWe can ask R the category of our values\n\nclass(TRUE)\n#&gt; [1] \"logical\""
   },
   {
     "objectID": "MATERIAL/slides/part1.html#values-1",
@@ -175,53 +175,25 @@
     "text": "Values\nIn R values can be of several categories:\n\nLogical: TRUE or FALSE\nNumeric: 3 or 3.2\nCharacter: \"t\", \"blue\" or \"this is a character\"\n\nWe can ask R the category of our values\n\nclass(TRUE)\n#&gt; [1] \"logical\"\nclass(3)\n#&gt; [1] \"numeric\"\nclass(\"t\")\n#&gt; [1] \"character\"\nclass(pi)\n#&gt; [1] \"numeric\""
   },
   {
-    "objectID": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue",
-    "href": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue",
+    "objectID": "MATERIAL/slides/part1.html#assigning-variables",
+    "href": "MATERIAL/slides/part1.html#assigning-variables",
     "title": "Introduction to R",
-    "section": "Vectors {.auto-animate=“true”}",
-    "text": "Vectors {.auto-animate=“true”}\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3"
+    "section": "Assigning variables",
+    "text": "Assigning variables\nWe can create variables that contain our values.\nTo do so, use &lt;- or =\n\nvariable &lt;- value\n\n\nIf we want to create a variable x that is equal to the value 3 and y that is equal to the value \"blue\"\n\nx &lt;- 3\ny &lt;- \"blue\"\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nDo not mix with == that test if the values are equals.\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nThe opposite of == is !=\n\n\n\n\n\n\n\nThe variables are then stored in our “environment” and we can reuse them\n\nx * 2 + x^x\n#&gt; [1] 33"
   },
   {
-    "objectID": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-1",
-    "href": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-1",
+    "objectID": "MATERIAL/slides/part1.html#functions",
+    "href": "MATERIAL/slides/part1.html#functions",
     "title": "Introduction to R",
-    "section": "Vectors {.auto-animate=“true”}",
-    "text": "Vectors {.auto-animate=“true”}\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68"
+    "section": "Functions",
+    "text": "Functions\nR uses functions that all have the same structure: function_name(argument, ...)\n\nlog(argument1)\nplot(argument1, argument2, ...)\n\n\nIt is impossible to know everything by heart and what arguments are needed.\nFortunately, manuals for each function exists using ? before the function name.\n\n?log()"
   },
   {
-    "objectID": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-2",
-    "href": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-2",
+    "objectID": "MATERIAL/slides/part1.html#vectors",
+    "href": "MATERIAL/slides/part1.html#vectors",
     "title": "Introduction to R",
-    "section": "Vectors {.auto-animate=“true”}",
-    "text": "Vectors {.auto-animate=“true”}\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\""
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-3",
-    "href": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-3",
-    "title": "Introduction to R",
-    "section": "Vectors {.auto-animate=“true”}",
-    "text": "Vectors {.auto-animate=“true”}\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\"\nvector4 &lt;- c(vector1, vector2) ; print(vector4)\n#&gt; [1] 1.00 2.00 3.00 3.00 3.34 3.68\n\n\nWe use these vectors to do our calculations:\n\nvector1 * vector2\n#&gt; [1]  3.00  6.68 11.04"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-4",
-    "href": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-4",
-    "title": "Introduction to R",
-    "section": "Vectors {.auto-animate=“true”}",
-    "text": "Vectors {.auto-animate=“true”}\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\"\nvector4 &lt;- c(vector1, vector2) ; print(vector4)\n#&gt; [1] 1.00 2.00 3.00 3.00 3.34 3.68\n\nWe use these vectors to do our calculations:\n\nvector1 * vector2\n#&gt; [1]  3.00  6.68 11.04\nmean(vector2)\n#&gt; [1] 3.34"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-5",
-    "href": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-5",
-    "title": "Introduction to R",
-    "section": "Vectors {.auto-animate=“true”}",
-    "text": "Vectors {.auto-animate=“true”}\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\"\nvector4 &lt;- c(vector1, vector2) ; print(vector4)\n#&gt; [1] 1.00 2.00 3.00 3.00 3.34 3.68\n\nWe use these vectors to do our calculations:\n\nvector1 * vector2\n#&gt; [1]  3.00  6.68 11.04\nmean(vector2)\n#&gt; [1] 3.34\nsd(vector4)\n#&gt; [1] 0.9924314"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-6",
-    "href": "MATERIAL/slides/part1.html#vectors-.auto-animatetrue-6",
-    "title": "Introduction to R",
-    "section": "Vectors {.auto-animate=“true”}",
-    "text": "Vectors {.auto-animate=“true”}\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\"\nvector4 &lt;- c(vector1, vector2) ; print(vector4)\n#&gt; [1] 1.00 2.00 3.00 3.00 3.34 3.68\n\nWe use these vectors to do our calculations:\n\nvector1 * vector2\n#&gt; [1]  3.00  6.68 11.04\nmean(vector2)\n#&gt; [1] 3.34\nsd(vector4)\n#&gt; [1] 0.9924314\nmax(vector1)\n#&gt; [1] 3"
+    "section": "Vectors",
+    "text": "Vectors\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3"
   },
   {
     "objectID": "MATERIAL/slides/part1.html#vectors-1",
@@ -252,101 +224,24 @@
     "text": "Vectors\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\"\nvector4 &lt;- c(vector1, vector2) ; print(vector4)\n#&gt; [1] 1.00 2.00 3.00 3.00 3.34 3.68\n\nWe use these vectors to do our calculations:\n\nvector1 * vector2\n#&gt; [1]  3.00  6.68 11.04\nmean(vector2)\n#&gt; [1] 3.34\nsd(vector4)\n#&gt; [1] 0.9924314\nmax(vector1)\n#&gt; [1] 3"
   },
   {
-    "objectID": "MATERIAL/slides/part1.html#vectors-5",
-    "href": "MATERIAL/slides/part1.html#vectors-5",
+    "objectID": "MATERIAL/slides/part1.html#importing-data",
+    "href": "MATERIAL/slides/part1.html#importing-data",
     "title": "Introduction to R",
-    "section": "Vectors",
-    "text": "Vectors\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\"\nvector4 &lt;- c(vector1, vector2) ; print(vector4)\n#&gt; [1] 1.00 2.00 3.00 3.00 3.34 3.68\n\nWe use these vectors to do our calculations:\n\nvector1 * vector2\n#&gt; [1]  3.00  6.68 11.04\nmean(vector2)\n#&gt; [1] 3.34\nsd(vector4)\n#&gt; [1] 0.9924314\nmax(vector1)\n#&gt; [1] 3"
+    "section": "Importing data",
+    "text": "Importing data\nThe best way to do so is to use: read.*(file = \"/your/file.*\", sep = \"/t\", dec = \",\")\n\n\nWhere * is:\n\ncsv - comma-separated values\ncsv2 - semicolon-separated values, with comma as the decimal mark\ndelim - any delimited files\n\n\n\n\n\nfile corresponds to the path of the file\n\n\n\n\nsep specifies the separator mark\n\n\n\n\ndec specifies the decimal mark"
   },
   {
-    "objectID": "MATERIAL/slides/part1.html#vectors-6",
-    "href": "MATERIAL/slides/part1.html#vectors-6",
+    "objectID": "MATERIAL/slides/part1.html#plan-for-the-next-session",
+    "href": "MATERIAL/slides/part1.html#plan-for-the-next-session",
     "title": "Introduction to R",
-    "section": "Vectors",
-    "text": "Vectors\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\"\nvector4 &lt;- c(vector1, vector2) ; print(vector4)\n#&gt; [1] 1.00 2.00 3.00 3.00 3.34 3.68\n\nWe use these vectors to do our calculations:\n\nvector1 * vector2\n#&gt; [1]  3.00  6.68 11.04\nmean(vector2)\n#&gt; [1] 3.34\nsd(vector4)\n#&gt; [1] 0.9924314\nmax(vector1)\n#&gt; [1] 3"
+    "section": "Plan for the next session",
+    "text": "Plan for the next session\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to tidyverse\nPipe the data using magrittr\nClean the data using tidyr\nArrange the data using dplyr\nPlot using ggplot2"
   },
   {
-    "objectID": "MATERIAL/slides/part1.html#r-syntax-3",
-    "href": "MATERIAL/slides/part1.html#r-syntax-3",
+    "objectID": "MATERIAL/slides/part1.html#do-not-hesitate-to-use-google-to-get-help",
+    "href": "MATERIAL/slides/part1.html#do-not-hesitate-to-use-google-to-get-help",
     "title": "Introduction to R",
-    "section": "R syntax",
-    "text": "R syntax\n\nLike Excel, or a calculator R can help us resolve “basic” operations\n\n\n2 + 2\n#&gt; [1] 4\n4 * 4\n#&gt; [1] 16\n(5 + 4) / (1 - 4 ^ 2)\n#&gt; [1] -0.6\n\n\nBut also more complex operations"
-  },
-  {
-    "objectID": "MATERIAL/slides/part1.html#vectors-7",
-    "href": "MATERIAL/slides/part1.html#vectors-7",
-    "title": "Introduction to R",
-    "section": "Vectors",
-    "text": "Vectors\nR stores values in vectors or arrays that can be created in different ways:\n\nvector1 &lt;- c(1, 2, 3) ; print(vector1)\n#&gt; [1] 1 2 3\nvector2 &lt;- seq(from = 3, to = 4, by = 0.34) ; print(vector2)\n#&gt; [1] 3.00 3.34 3.68\nvector3 &lt;- rep(\"blue\", 2) ; print(vector3)\n#&gt; [1] \"blue\" \"blue\"\nvector4 &lt;- c(vector1, vector2) ; print(vector4)\n#&gt; [1] 1.00 2.00 3.00 3.00 3.34 3.68\n\nWe use these vectors to do our calculations:\n\nvector1 * vector2\n#&gt; [1]  3.00  6.68 11.04\nmean(vector2)\n#&gt; [1] 3.34\nsd(vector4)\n#&gt; [1] 0.9924314\nmax(vector1)\n#&gt; [1] 3"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html",
-    "href": "MATERIAL/tutorial/part1.html",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": "",
-    "text": "As seen during the presentation, we will keep track of our progress. We thus need to open a new script following one of the option below.\n\n\n\n\nflowchart LR\n  A[1. File] --&gt; B[2. New File]\n  B --&gt; C[3. R script]\n\n\n\n\n\n\n\n\n\nflowchart LR\n  A[\"⌘/Ctlr + ⇧ + N\"]"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#new-script",
-    "href": "MATERIAL/tutorial/part1.html#new-script",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": "",
-    "text": "As seen during the presentation, we will keep track of our progress. We thus need to open a new script following one of the option below.\n\n\n\n\nflowchart LR\n  A[1. File] --&gt; B[2. New File]\n  B --&gt; C[3. R script]\n\n\n\n\n\n\n\n\n\nflowchart LR\n  A[\"⌘/Ctlr + ⇧ + N\"]"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#r-syntax",
-    "href": "MATERIAL/tutorial/part1.html#r-syntax",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": "R syntax",
-    "text": "R syntax\n is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it. R is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it.\nBut first some syntax information:\n\nEverything after # is considered as a comment and will not be executed. It is very important to write what we are doing, so we do not get lost next time we open our scripts.\n\n\n# 2 + 2 will not work because of the #\n2 + 2 # We should then annotate our script like this\n#&gt; [1] 4\n\n\nSeveral lines of code can be written in one line but must be separated by a semicolon\n\n\n2 + 2\n#&gt; [1] 4\n3 * 2\n#&gt; [1] 6\n\n# This can also be written as follow:\n2 + 2 ; 3 * 2\n#&gt; [1] 4\n#&gt; [1] 6\n\n\nIn  we can name any object using =, &lt;-, -&gt; or assign In R we can name any object using =, &lt;-, -&gt; or assign\n\n\nc(1, 2, 3, 4) -&gt; my_first_vector\nmy_vector &lt;- c(1, 2, 3, 4)\nmy_function = function(x){x + 2}\nassign(\"x\", c(2, 3, 4, 5))\n\n\n== is a logical function that can be translated as is equal to, contrarily is not equal to is written !=\n\n\n2 + 2 == 4\n#&gt; [1] TRUE\n3 * 2 == 4\n#&gt; [1] FALSE\n3 * 2 != 4\n#&gt; [1] TRUE\n\n\nExercises\nUsing a new  script, do these calculations: Using a new R script, do these calculations:\n\n\\ 2^7\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2^7\n#&gt; [1] 128\n\n\n\n\n\n\n\\ cos(\\pi)\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\n\n?cos()\n?pi()\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncos(pi)\n#&gt; [1] -1\n\n\n\n\n\n\nThe sum of all number from 1 to 100\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nOperations can take place for an entire vector\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nvector &lt;- seq(from = 1, to = 100, by = 1) # Create a vector from 1 to 100\nsum(vector) # Calculate the sum\n#&gt; [1] 5050\n\n\n\n\n\nCreate a parameter x1 that equals to 5 and a parameter x2 that equals to 10\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nx1 &lt;- 5 ; x2 &lt;-  10\n\n\n\n\n\n\nIs \\ 2* x1 equal to x2?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2 * x1 == x2\n#&gt; [1] TRUE"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#functions",
-    "href": "MATERIAL/tutorial/part1.html#functions",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": "Functions",
-    "text": "Functions\nAs seen during the lecture,  works with functions that can: As seen during the lecture, R works with functions that can:\n\nAlready be implemented in base  Already be implemented in base R\nComming from another package\nCreated by the user\n\nWe will see these three examples in this section, but first it is important to remember that the typical structure of a function is function(argument1, ...).\nFortunately  helps us to remember what are the needed arguments: Fortunately R helps us to remember what are the needed arguments:\n\nUsing help() or ?\n\n\n\nhelp(topic = \"sin\")\n?sin\n\n\n\nUsing example\n\n\n\nexample(sum)\n#&gt; \n#&gt; sum&gt; ## Pass a vector to sum, and it will add the elements together.\n#&gt; sum&gt; sum(1:5)\n#&gt; [1] 15\n#&gt; \n#&gt; sum&gt; ## Pass several numbers to sum, and it also adds the elements.\n#&gt; sum&gt; sum(1, 2, 3, 4, 5)\n#&gt; [1] 15\n#&gt; \n#&gt; sum&gt; ## In fact, you can pass vectors into several arguments, and everything gets added.\n#&gt; sum&gt; sum(1:2, 3:5)\n#&gt; [1] 15\n#&gt; \n#&gt; sum&gt; ## If there are missing values, the sum is unknown, i.e., also missing, ....\n#&gt; sum&gt; sum(1:5, NA)\n#&gt; [1] NA\n#&gt; \n#&gt; sum&gt; ## ... unless  we exclude missing values explicitly:\n#&gt; sum&gt; sum(1:5, NA, na.rm = TRUE)\n#&gt; [1] 15\n\n\nFor the functions that comes from external packages, we first need to install the new packages. The most common way to do so is by executing install.packages(\"Package_Name\"). Then when we want to load the functions, we start the script by executing library(Package_Name).\nFinally, if we really do not find a suitable function in a package, we can create your functions following this general structure, but this will not be covered in this tutorial:\n\nmy_function &lt;- function(&lt;argument1&gt;, &lt;argument2&gt;, ...){\n  &lt;here comes the definition of my function&gt;\n  return(&lt;output of the definition&gt;)\n}\n\n\nExercises\n\nWhat is the function log() doing and from were does this function come from (base , other packages)? What is the function log() doing and from were does this function come from (base R, other packages)?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n?log() #It takes the natural logarithm of the value, it comes from base R\nlog(10) \n\n\n\n\n\n\nWhat are the mandatory arguments for the function plot()\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n?plot() # the coordinates points x and y are needed\n\n\n\n\n\n\nIs there help associated with the functions from a loaded package?\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nThe function ggplot() comes from the package ggplot2\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nlibrary(ggplot2)\n?ggplot # Yes, there is also help for the imported functions\n\n\n\n\n\n\n\n\n\n\nOptional exercises\n\n\n\n\nCreate a function that print Hello World! when executing it\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nHello &lt;- function(){\n  cat(\"Hello World!\") # print(\"Hello World!\") works too\n}\nHello()\n#&gt; Hello World!\n\n\n\n\n\nCreate a function that multiply the input by 4\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nmultiplyeR &lt;- function(x, y = 4){\n  return(x * y)\n}\nmultiplyeR(x = 2) # It works with values\n#&gt; [1] 8\nmultiplyeR(x = seq(1, 3, 1)) # But also vectors\n#&gt; [1]  4  8 12"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#fa-brands-r-project-syntax",
-    "href": "MATERIAL/tutorial/part1.html#fa-brands-r-project-syntax",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": " syntax",
-    "text": "syntax"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#fa-brands-r-project-r-syntax",
-    "href": "MATERIAL/tutorial/part1.html#fa-brands-r-project-r-syntax",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": " R syntax",
-    "text": "R syntax\n is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it.\nBut first some syntax information:\n\nEverything after # is considered as a comment and will not be executed. It is very important to write what we are doing, so we do not get lost next time we open our scripts.\n\n\n# 2 + 2 will not work because of the #\n2 + 2 # We should then annotate our script like this\n#&gt; [1] 4\n\n\nSeveral lines of code can be written in one line but must be separated by a semicolon\n\n\n2 + 2\n#&gt; [1] 4\n3 * 2\n#&gt; [1] 6\n\n# This can also be written as follow:\n2 + 2 ; 3 * 2\n#&gt; [1] 4\n#&gt; [1] 6\n\n\nIn  we can name any object using =, &lt;-, -&gt; or assign In R we can name any object using =, &lt;-, -&gt; or assign\n\n\nc(1, 2, 3, 4) -&gt; my_first_vector\nmy_vector &lt;- c(1, 2, 3, 4)\nmy_function = function(x){x + 2}\nassign(\"x\", c(2, 3, 4, 5))\n\n\n== is a logical function that can be translated as is equal to, contrarily is not equal to is written !=\n\n\n2 + 2 == 4\n#&gt; [1] TRUE\n3 * 2 == 4\n#&gt; [1] FALSE\n3 * 2 != 4\n#&gt; [1] TRUE\n\n\nExercises\nUsing a new  script, do these calculations: Using a new R script, do these calculations:\n\n\\ 2^7\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2^7\n#&gt; [1] 128\n\n\n\n\n\n\n\\ cos(\\pi)\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\n\n?cos()\n?pi()\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncos(pi)\n#&gt; [1] -1\n\n\n\n\n\n\nThe sum of all number from 1 to 100\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nOperations can take place for an entire vector\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nvector &lt;- seq(from = 1, to = 100, by = 1) # Create a vector from 1 to 100\nsum(vector) # Calculate the sum\n#&gt; [1] 5050\n\n\n\n\n\nCreate a parameter x1 that equals to 5 and a parameter x2 that equals to 10\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nx1 &lt;- 5 ; x2 &lt;-  10\n\n\n\n\n\n\nIs \\ 2* x1 equal to x2?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2 * x1 == x2\n#&gt; [1] TRUE"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#fa-brands-r-project-syntax-r-syntax",
-    "href": "MATERIAL/tutorial/part1.html#fa-brands-r-project-syntax-r-syntax",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": " syntax R syntax",
-    "text": "syntax R syntax\n is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it. R is a programming language that use a simplified syntax. In this section, we will explore how to write a script and execute it.\nBut first some syntax information:\n\nEverything after # is considered as a comment and will not be executed. It is very important to write what we are doing, so we do not get lost next time we open our scripts.\n\n\n# 2 + 2 will not work because of the #\n2 + 2 # We should then annotate our script like this\n#&gt; [1] 4\n\n\nSeveral lines of code can be written in one line but must be separated by a semicolon\n\n\n2 + 2\n#&gt; [1] 4\n3 * 2\n#&gt; [1] 6\n\n# This can also be written as follow:\n2 + 2 ; 3 * 2\n#&gt; [1] 4\n#&gt; [1] 6\n\n\nIn  we can name any object using =, &lt;-, -&gt; or assign In R we can name any object using =, &lt;-, -&gt; or assign\n\n\nc(1, 2, 3, 4) -&gt; my_first_vector\nmy_vector &lt;- c(1, 2, 3, 4)\nmy_function = function(x){x + 2}\nassign(\"x\", c(2, 3, 4, 5))\n\n\n== is a logical function that can be translated as is equal to, contrarily is not equal to is written !=\n\n\n2 + 2 == 4\n#&gt; [1] TRUE\n3 * 2 == 4\n#&gt; [1] FALSE\n3 * 2 != 4\n#&gt; [1] TRUE\n\n\nExercises\nUsing a new  script, do these calculations: Using a new R script, do these calculations:\n\n\\ 2^7\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2^7\n#&gt; [1] 128\n\n\n\n\n\n\n\\ cos(\\pi)\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\n\n?cos()\n?pi()\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncos(pi)\n#&gt; [1] -1\n\n\n\n\n\n\nThe sum of all number from 1 to 100\n\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nOperations can take place for an entire vector\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nvector &lt;- seq(from = 1, to = 100, by = 1) # Create a vector from 1 to 100\nsum(vector) # Calculate the sum\n#&gt; [1] 5050\n\n\n\n\n\nCreate a parameter x1 that equals to 5 and a parameter x2 that equals to 10\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nx1 &lt;- 5 ; x2 &lt;-  10\n\n\n\n\n\n\nIs \\ 2* x1 equal to x2?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2 * x1 == x2\n#&gt; [1] TRUE"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#vectors",
-    "href": "MATERIAL/tutorial/part1.html#vectors",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": "Vectors",
-    "text": "Vectors\n works with vector from which we can do our calculations. R works with vector from which we can do our calculations. Several ways exist to create a vector:\n\nUsing c(), values are added next to each other and separated with a ,.\n\n\nc(1, 2, 1, 4) # It works with integers (round numbers)\nc(1.1, 2.4, 3.14652) # It works with floats (decimal numbers)\nc(\"chocolate\", \"ice-cream\") # It works with character\nc(TRUE, FALSE) # It works with logical variables\n\n\nUsing rep() to repeat the same values several times.\n\n\nrep(x = 3, 2) # it reads: repeat 2 times the value x that is equal to 3\nrep(x = \"chocolate\", 3) # it reads: repeat 3 times the value x that is equal to \"chocolate\"\n\n\nUsing seq() to create a sequence of values. It only works for numeric values!\n\n\nseq(from = 0, to = 10, by = 2) # it reads: create a sequence of values from 0 to 10 every 2 numbers\nseq(from = -1, to = 1, by = 0.2) # it also works with negative values and decimal\n\n\nCombining all of the above\n\n\nrep(x = c(seq(from = 2, to = 3, by = 0.2), 5), 2)\nc(rep(x = \"character\", 5), \"other character\")\nc(seq(from = 2, to = 10, by = 2), rep(x = 1000, 2), c(1, 4, 2))\n\n\nExercises\n\nCreate a vector v1 that contains the values 1, 2, 3, 4, 6\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv1 &lt;- c(1, 2, 3, 4, 6)\n\n\n\n\n\n\nCreate a vector v2 that contains 10 times the values 1, 2, 3, 4, 6\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv2 &lt;- rep(v1, 10)\n\n\n\n\n\n\nCreate a vector v3 that repeats TRUE, FALSE 2 times\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv3 &lt;- rep(c(TRUE, FALSE), 2)\n\n\n\n\n\n\nCreate a vector v4 that goes from 10 to 2000\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv4 &lt;- 10:2000\n# or \nv4 &lt;- seq(from  = 10, to = 2000, by = 1)\n\n\n\n\n\n\nCreate a vector v5 that contains v1, v2, v3 and 2 times v4\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nv5 &lt;- c(v1, v2, v3, rep(v4, 2))"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#dataframe",
-    "href": "MATERIAL/tutorial/part1.html#dataframe",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": "Dataframe",
-    "text": "Dataframe\nMost likely, we will work with data stored in dataframes. A dataframe is composed of observations (rows) and variables (columns). We can see a dataframe like multiples vectors put togethers.\nFor example in the dataframe below (named df) is composed of 4 vectors:\n\nSpecies that contains the species names\nAbundance that contains the abundances of the species\nLocation that contains the location of the species\nDate that contains the sampling date\n\n\n#&gt;         Species Abundance Location       Date\n#&gt; 1       Acartia        34     Askö 03-09-2024\n#&gt; 2 Pseudocalanus        12     Askö 04-09-2024\n#&gt; 3   Centropages        17     Askö 02-09-2024\n\nWe can access the individual columns (i.e., vectors) using $\n\ndf$Species\n#&gt; [1] \"Acartia\"       \"Pseudocalanus\" \"Centropages\"\ndf$Abundance\n#&gt; [1] 34 12 17\ndf$Location\n#&gt; [1] \"Askö\" \"Askö\" \"Askö\"\ndf$Date\n#&gt; [1] \"03-09-2024\" \"04-09-2024\" \"02-09-2024\"\n\n\nExercises\n\nCreate a vector genus containing the character \"Acartia\", \"Centropages\", \"Temora\", \"Acartia\", \"Centropages\", \"Temora\"\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ngenus = c(\"Acartia\", \"Centropages\", \"Temora\", \"Acartia\", \"Centropages\", \"Temora\") \n# or genus = rep(c(\"Acartia\", \"Centropages\", \"Temora\"), 2)\n\n\n\n\n\n\nCreate a vector station containing the character \"Askö\", \"Askö\", \"Askö\", \"Tjarnö\", \"Tjarnö\", \"Tjarnö\"\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nstation = c(rep(\"Askö\",3),rep(\"Tjarnö\", 3))\n\n\n\n\n\n\nCreate a vector abundance containing the values 3, 10.2, 4, 2.3, 4, 9.4\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nabundance = c(3, 10.2, 4, 2.3, 4, 9.4)\n\n\n\n\n\n\nCombine all the vectors in a dataframe called df\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ndf &lt;- data.frame(\"Genus\" = genus,\n                 \"Station\" = station,\n                 \"Abundance\" = abundance)\n\n\n\n\n\n\nCreate a vector output that correspond to the column Abundance of the dataframe df. Is output similar to the vector abundance?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\noutput &lt;- df$Abundance # or df[[3]]\noutput == abundance\n#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE"
-  },
-  {
-    "objectID": "MATERIAL/tutorial/part1.html#importing-data-in-fa-brands-r-project-importing-data-in-r",
-    "href": "MATERIAL/tutorial/part1.html#importing-data-in-fa-brands-r-project-importing-data-in-r",
-    "title": "Tutoial - Part 1 TutoRial - Part 1",
-    "section": "Importing data in  Importing data in R",
-    "text": "Importing data in  Importing data in R"
+    "section": "Do not hesitate to use google to get help !",
+    "text": "Do not hesitate to use google to get help !\nIf you have an issue with something, you are probably not the first and someone asked a solution on a forum !"
   }
 ]
