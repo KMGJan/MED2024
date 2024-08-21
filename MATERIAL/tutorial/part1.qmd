@@ -491,3 +491,36 @@ output == abundance
 ```
 :::
 :::
+
+##  [Importing data in {{< fa brands r-project >}}]{.no-print} [Importing data in **R** ]{.print-only}
+
+More often we enter our data in spreadsheets. We then need to import our data in [{{< fa brands r-project >}}]{.no-print} [**R**]{.print-only} to process them.<br>
+To do so, we use the `read.*` function family.
+
+A typical data import protocol looks like this:
+
+1. Set the working directory with its absolute path
+
+```{r}
+#| echo: true
+#| eval: false
+setwd("/Absolute/Path/To/Working/Directory")
+```
+
+2. Import your dataset in your environment
+
+```{r}
+#| echo: true
+#| eval: false
+df <- read.csv("./Relative/Path/Dataset.csv")
+```
+
+3. Examine the structure of the data to see if the importation worked well
+
+```{r}
+#| echo: true
+#| eval: false
+str(df)
+head(df)
+tail(df)
+```
