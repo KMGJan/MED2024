@@ -546,7 +546,7 @@ if (knitr::is_html_output()) {
     csv2 = FALSE,
     icon = "fa fa-save")
 } else {
-  cat("You can download the dataset on [GitHub](https://kmgjan.github.io/MED2024/MATERIAL/Part1/tutorial/assets)")
+  cat("You can download the dataset on [GitHub](https://github.com/KMGJan/MED2024/tree/main/MATERIAL/tutorial/assets)")
 }
 ```
 

@@ -67,7 +67,7 @@
     "href": "MATERIAL/index.html",
     "title": "MATERIAL",
     "section": "",
-    "text": "02-Sep-2023 (Saturday)\nIntroduction to R\nSlides\nTutorial\n\n\n03-Sep-2023 (Sunday)\nData manipulation and visualisation\nSlides\nTutorial"
+    "text": "05-Sep-2024 (Thursday)\nIntroduction to R\nSlides\nTutorial\n\n\n06-Sep-2024 (Friday)\nData handling and visualisation\nSlides\nTutorial"
   },
   {
     "objectID": "MATERIAL/slides/part1.html#plan-for-todays-lecture",
@@ -243,5 +243,82 @@
     "title": "Introduction to R",
     "section": "Do not hesitate to use google to get help !",
     "text": "Do not hesitate to use google to get help !\nIf you have an issue with something, you are probably not the first and someone asked a solution on a forum !"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#plan-for-todays-lecture",
+    "href": "MATERIAL/slides/part2.html#plan-for-todays-lecture",
+    "title": "Data handling and visualisation in R",
+    "section": "Plan for today’s lecture",
+    "text": "Plan for today’s lecture\n\nIntroduction to tidyverse\nPipe the data using magrittr\nClean the data using tidyr\nArrange the data using dplyr\nPlot using ggplot2"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#tidyverse",
+    "href": "MATERIAL/slides/part2.html#tidyverse",
+    "title": "Data handling and visualisation in R",
+    "section": "Tidyverse",
+    "text": "Tidyverse\n\n\n\n\n\ntidyverse is a collection of packages\nIt is now a standard in data analysis\nIt is easier to read and keep track of what is happening with the pipe operator %&gt;%\n\n\n\n\n\nThe book is available online"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#pipe-the-data-using-magrittr",
+    "href": "MATERIAL/slides/part2.html#pipe-the-data-using-magrittr",
+    "title": "Data handling and visualisation in R",
+    "section": "Pipe the data using magrittr",
+    "text": "Pipe the data using magrittr\n%&gt;% takes the data from the left and place it to the right\n\nx %&gt;% function() = function(x)\n\n\n\nWithout the pipe operator:\n\niris_subset &lt;- iris[, c(\"Species\", \"Sepal.Length\", \"Sepal.Width\")]\niris_subset$Sepal_Ratio &lt;- iris_subset$Sepal.Length / iris_subset$Sepal.Width\n\naggregate(Sepal_Ratio ~ Species, data = iris_subset, \n                    FUN = function(x) c(Average_ratio = mean(x), \n                                        standard_deviation = sd(x)))\n\n\nWith the pipe operator:\n\nlibrary(magrittr)\niris %&gt;% \n  dplyr::select(Species, Sepal.Length, Sepal.Width) %&gt;%\n  dplyr::mutate(Sepal_Ratio = Sepal.Length/Sepal.Width) %&gt;%\n  dplyr::group_by(Species)%&gt;%\n  dplyr::summarise(Average_ratio = mean(Sepal_Ratio),\n                   standard_deviation = sd(Sepal_Ratio))\n\n\n\n\n\nR 4.1.0 introduced a native pipe operator, |&gt;"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr",
+    "href": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr",
+    "title": "Data handling and visualisation in R",
+    "section": "Tidy the data with tidyr",
+    "text": "Tidy the data with tidyr\n\n\nA table is tidy if:\n\nEach variable is in its own column\nEach observation is in its own row\n\n\nKey functions:\n\npivot_longer\npivot_wider\nunite\nseparate\n\n\n\n\n \nsource: https://r4ds.had.co.nz/tidy-data.html"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---iris-example",
+    "href": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---iris-example",
+    "title": "Data handling and visualisation in R",
+    "section": "Tidy the data with tidyr - iris example",
+    "text": "Tidy the data with tidyr - iris example\n\n\n\n\n\nSepal.Length\nSepal.Width\nPetal.Length\nPetal.Width\nSpecies\nid\n\n\n\n\n5.1\n3.5\n1.4\n0.2\nsetosa\n1\n\n\n4.9\n3.0\n1.4\n0.2\nsetosa\n2\n\n\n4.7\n3.2\n1.3\n0.2\nsetosa\n3\n\n\n4.6\n3.1\n1.5\n0.2\nsetosa\n4\n\n\n\n\n\n\n\n\niris %&lt;&gt;% dplyr::mutate(id = 1:150)\niris |&gt; head(4)"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---pivot_longer",
+    "href": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---pivot_longer",
+    "title": "Data handling and visualisation in R",
+    "section": "Tidy the data with tidyr - pivot_longer",
+    "text": "Tidy the data with tidyr - pivot_longer\n\n\n\n\n\nSpecies\nid\nParameter\nSize\n\n\n\n\nsetosa\n1\nSepal.Length\n5.1\n\n\nsetosa\n1\nSepal.Width\n3.5\n\n\nsetosa\n1\nPetal.Length\n1.4\n\n\nsetosa\n1\nPetal.Width\n0.2\n\n\n\n\n\n\n\n\nlong_iris &lt;- iris |&gt; \n  tidyr::pivot_longer(1:4,\n                      names_to = \"Parameter\",\n                      values_to = \"Size\")\nlong_iris |&gt; head(4)"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---separate",
+    "href": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---separate",
+    "title": "Data handling and visualisation in R",
+    "section": "Tidy the data with tidyr - separate",
+    "text": "Tidy the data with tidyr - separate\n\n\n\n\n\nSpecies\nid\nOrgan\nMeasure\nSize\n\n\n\n\nsetosa\n1\nSepal\nLength\n5.1\n\n\nsetosa\n1\nSepal\nWidth\n3.5\n\n\nsetosa\n1\nPetal\nLength\n1.4\n\n\nsetosa\n1\nPetal\nWidth\n0.2\n\n\n\n\n\n\n\n\nsep_iris &lt;- long_iris |&gt; \n  tidyr::separate(Parameter, into = c(\"Organ\", \"Measure\"))\nsep_iris |&gt; head(4)"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---pivot_wider",
+    "href": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---pivot_wider",
+    "title": "Data handling and visualisation in R",
+    "section": "Tidy the data with tidyr - pivot_wider",
+    "text": "Tidy the data with tidyr - pivot_wider\n\n\n\n\n\nSpecies\nid\nMeasure\nSepal\nPetal\n\n\n\n\nsetosa\n1\nLength\n5.1\n1.4\n\n\nsetosa\n1\nWidth\n3.5\n0.2\n\n\nsetosa\n2\nLength\n4.9\n1.4\n\n\nsetosa\n2\nWidth\n3.0\n0.2\n\n\n\n\n\n\n\n\nwide_iris &lt;- sep_iris |&gt; \n  tidyr::pivot_wider(names_from = \"Organ\",\n                     values_from = \"Size\")\nwide_iris |&gt;  head(4)"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---unite",
+    "href": "MATERIAL/slides/part2.html#tidy-the-data-with-tidyr---unite",
+    "title": "Data handling and visualisation in R",
+    "section": "Tidy the data with tidyr - unite",
+    "text": "Tidy the data with tidyr - unite\n\n\n\n\n\nSpecies\nid\nMeasure\nSepal/Petal\n\n\n\n\nsetosa\n1\nLength\n5.1/1.4\n\n\nsetosa\n1\nWidth\n3.5/0.2\n\n\nsetosa\n2\nLength\n4.9/1.4\n\n\nsetosa\n2\nWidth\n3/0.2\n\n\n\n\n\n\n\n\nunite_iris &lt;- wide_iris |&gt; \n  tidyr::unite(col = \"Sepal/Petal\", c(Sepal, Petal), sep = \"/\")\nunite_iris |&gt;  head(4)"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#data-visulalisation",
+    "href": "MATERIAL/slides/part2.html#data-visulalisation",
+    "title": "Data handling and visualisation in R",
+    "section": "Data visulalisation",
+    "text": "Data visulalisation\nIt is very important to look at the data.  Totally different data might have similar statistics…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstatistics\nvalue\n\n\n\n\nmean_x\n54.27\n\n\nmean_y\n47.83\n\n\nsd_x\n16.77\n\n\nsd_y\n26.94\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsource: datasauRus"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#arrange-the-data-with-dyplr",
+    "href": "MATERIAL/slides/part2.html#arrange-the-data-with-dyplr",
+    "title": "Data handling and visualisation in R",
+    "section": "Arrange the data with dyplr",
+    "text": "Arrange the data with dyplr\ndplyr simplifies the data manipulation with self-explanatory functions:\n\nfilter observations based on their values\nmutate a new column as a function of others\nselect variables based on their names\ngroup_by variable\nsummarise the data\n\n\niris %&gt;%\n  dplyr::filter(Petal.Length &gt;= 1.4) %&gt;%\n  dplyr::mutate(Sepal_Ratio = Sepal.Length/Sepal.Width) %&gt;%\n  dplyr::select(Species, Sepal_Ratio) %&gt;% # equaivalent to select(-c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width))\n  dplyr::group_by(Species) %&gt;%\n  dplyr::summarise(Average_ratio = mean(Sepal_Ratio),\n                   standard_deviation = sd(Sepal_Ratio))"
   }
 ]

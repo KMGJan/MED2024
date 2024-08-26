@@ -1,0 +1,285 @@
+---
+title: "Data handling and visualisation in R"
+subtitle: "Marine Ecosystem Dynamics"
+author: "Kinlan M.G. Jan"
+format: 
+  revealjs:
+    toc: false
+    transition: slide
+    fontsize: 25pt
+    slide-number: true
+    show-slide-number: all
+    chalkboard: true
+    logo: "/assets/images/SU_black.svg"
+---
+
+## Plan for today's lecture
+
+-   Introduction to `tidyverse`
+-   Pipe the data using `magrittr`
+-   Clean the data using `tidyr`
+-   Arrange the data using `dplyr`
+-   Plot using `ggplot2`
+
+::: {layout-ncol="5"}
+![](assets/images/tidyverse.svg)
+
+![](assets/images/pipe.svg)
+
+![](assets/images/tidyr.svg)
+
+![](assets/images/dplyr.svg)
+
+![](assets/images/ggplot2.svg)
+:::
+
+## Tidyverse
+
+::: columns
+::: {.column width="40%"}
+<img src="assets/images/cover2.jpg" width="70%"/>
+:::
+
+::: {.column width="60%"}
+-   `tidyverse` is a [collection of packages](https://www.tidyverse.org/packages/)
+-   It is now a standard in data analysis
+-   It is easier to read and keep track of what is happening with the pipe operator `%>%`
+
+::: aside
+The book is available [online](https://r4ds.hadley.nz/)
+:::
+:::
+:::
+
+
+## Pipe the data using `magrittr`
+
+`%>%` takes the data from the left and place it to the right
+
+-   `x %>% function()` = `function(x)`
+
+::: columns
+::: {.column width="\"50%"}
+Without the pipe operator:
+
+```{r}
+#| echo: true
+#| eval: false
+iris_subset <- iris[, c("Species", "Sepal.Length", "Sepal.Width")]
+iris_subset$Sepal_Ratio <- iris_subset$Sepal.Length / iris_subset$Sepal.Width
+
+aggregate(Sepal_Ratio ~ Species, data = iris_subset, 
+                    FUN = function(x) c(Average_ratio = mean(x), 
+                                        standard_deviation = sd(x)))
+```
+:::
+
+::: {.column width="\"50%"}
+With the pipe operator:
+
+```{r}
+#| echo: true
+#| eval: false
+library(magrittr)
+iris %>% 
+  dplyr::select(Species, Sepal.Length, Sepal.Width) %>%
+  dplyr::mutate(Sepal_Ratio = Sepal.Length/Sepal.Width) %>%
+  dplyr::group_by(Species)%>%
+  dplyr::summarise(Average_ratio = mean(Sepal_Ratio),
+                   standard_deviation = sd(Sepal_Ratio))
+
+```
+:::
+:::
+
+::: aside
+R 4.1.0 introduced a native pipe operator, `|>`
+:::
+
+
+## Tidy the data with `tidyr`
+
+::: columns
+::: {.column width="45%"}
+A table is tidy if:
+
+-   Each variable is in its own column
+-   Each observation is in its own row
+:::
+
+::: {.column width="50%"}
+Key functions:
+
+-   `pivot_longer`
+-   `pivot_wider`
+-   `unite`
+-   `separate`
+:::
+:::
+
+::: {style="text-align:center"}
+<img src="assets/images/tidy-1.png" style="width:70%;"/> <br>
+
+[source: [https://r4ds.had.co.nz/tidy-data.html](https://r4ds.had.co.nz/tidy-data.html)]{.aside}
+
+:::
+
+## Tidy the data with `tidyr` - `iris` example
+
+```{r}
+#| echo: false
+library(kableExtra) ; library(magrittr)
+iris %<>% dplyr::mutate(id = 1:150)
+iris |> head(4) |> kbl(format = "html", table.attr = "style='width:30%;'")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+iris %<>% dplyr::mutate(id = 1:150)
+iris |> head(4)
+```
+
+## Tidy the data with `tidyr` - `pivot_longer`
+
+```{r}
+#| echo: false
+long_iris <- iris |> 
+  tidyr::pivot_longer(1:4,
+                      names_to = "Parameter",
+                      values_to = "Size")
+long_iris |> head(4) |> kbl(format = "html", table.attr = "style='width:30%;'")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+long_iris <- iris |> 
+  tidyr::pivot_longer(1:4,
+                      names_to = "Parameter",
+                      values_to = "Size")
+long_iris |> head(4)
+```
+
+## Tidy the data with `tidyr` - `separate`
+
+```{r}
+#| echo: false
+sep_iris <- long_iris |> 
+  tidyr::separate(Parameter, into = c("Organ", "Measure"))
+sep_iris |> head(4) |> kbl(format = "html", table.attr = "style='width:30%;'")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+sep_iris <- long_iris |> 
+  tidyr::separate(Parameter, into = c("Organ", "Measure"))
+sep_iris |> head(4)
+```
+
+## Tidy the data with `tidyr` - `pivot_wider`
+
+```{r}
+#| echo: false
+wide_iris <- sep_iris |> 
+  tidyr::pivot_wider(names_from = "Organ",
+                     values_from = "Size")
+wide_iris |>  head(4) |> kbl(format = "html", table.attr = "style='width:30%;'")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+wide_iris <- sep_iris |> 
+  tidyr::pivot_wider(names_from = "Organ",
+                     values_from = "Size")
+wide_iris |>  head(4)
+```
+
+## Tidy the data with `tidyr` - `unite`
+
+```{r}
+#| echo: false
+unite_iris <- wide_iris |> 
+  tidyr::unite(col = "Sepal/Petal", c(Sepal, Petal), sep = "/")
+unite_iris |>  head(4) |> kbl(format = "html", table.attr = "style='width:30%;'")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+unite_iris <- wide_iris |> 
+  tidyr::unite(col = "Sepal/Petal", c(Sepal, Petal), sep = "/")
+unite_iris |>  head(4)
+```
+
+## Arrange the data with `dyplr`
+
+`dplyr` simplifies the data manipulation with self-explanatory functions:
+
+-   `filter` observations based on their values
+-   `mutate` a new column as a function of others
+-   `select` variables based on their names
+-   `group_by` variable
+-   `summarise` the data
+
+```{r}
+#| echo: true
+#| eval: false
+iris %>%
+  dplyr::filter(Petal.Length >= 1.4) %>%
+  dplyr::mutate(Sepal_Ratio = Sepal.Length/Sepal.Width) %>%
+  dplyr::select(Species, Sepal_Ratio) %>% # equaivalent to select(-c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width))
+  dplyr::group_by(Species) %>%
+  dplyr::summarise(Average_ratio = mean(Sepal_Ratio),
+                   standard_deviation = sd(Sepal_Ratio))
+```
+
+## Data visulalisation
+
+It is very important to look at the data. <br> Totally different data might have similar statistics...
+
+::: columns
+::: {.column width="60%"}
+```{r}
+#| eval: true
+#| echo: false
+
+library(datasauRus)
+if(requireNamespace("ggplot2")){
+  library(ggplot2)
+  ggplot(dplyr::filter(datasaurus_dozen, dataset != "wide_lines"), aes(x = x, y = y, colour = dataset)) +
+    geom_point() +
+    theme_bw() +
+    theme(legend.position = "none",
+          plot.background = element_blank()) +
+    facet_wrap(~dataset, ncol = 4)
+}
+
+```
+:::
+
+::: {.column width="30%"}
+```{r}
+#| eval: true
+#| echo: false
+library(datasauRus)
+dplyr::filter(datasaurus_dozen, dataset == "wide_lines") %>%
+    dplyr::group_by(dataset) %>%
+    dplyr::summarise(mean_x = round(mean(x),2),
+                     mean_y = round(mean(y),2),
+                     sd_x = round(sd(x),2),
+                     sd_y = round(sd(y),2)) %>%
+  dplyr::ungroup() %>%
+  dplyr::select(-dataset) |> 
+  tidyr::pivot_longer(1:4, names_to = "statistics") |> 
+  kbl(format = "html", table.attr = "style='width:30%;'")
+
+```
+:::
+:::
+
+::: aside
+source: [datasauRus](https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html){.smaller}
+:::
