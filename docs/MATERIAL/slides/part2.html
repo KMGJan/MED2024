@@ -853,14 +853,433 @@ Kinlan M.G. Jan
 </div>
 </div>
 
+<aside><div>
+<p>source: <a href="https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html" class="smaller">datasauRus</a></p>
+</div></aside></section>
+<section id="visualise-the-data-with-ggplot2" class="slide level2">
+<h2>Visualise the data with <code>ggplot2</code></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-1-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>species_palette <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F8766D"</span>, <span class="st">"#00BA38"</span>, <span class="st">"#619CFF"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>size_vector <span class="ot">&lt;-</span> iris<span class="sc">$</span>Petal.Width</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">plot</span>(<span class="at">x =</span> iris<span class="sc">$</span>Sepal.Length,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>     <span class="at">y =</span> iris<span class="sc">$</span>Sepal.Width,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>     <span class="at">col =</span> species_palette[iris<span class="sc">$</span>Species],</span>
+<span id="cb9-6"><a href="#cb9-6"></a>     <span class="at">bg =</span> species_palette[iris<span class="sc">$</span>Species],</span>
+<span id="cb9-7"><a href="#cb9-7"></a>     <span class="at">pch =</span> <span class="dv">21</span>,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>     <span class="at">cex =</span> size_vector,</span>
+<span id="cb9-9"><a href="#cb9-9"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fu">min</span>(iris<span class="sc">$</span>Sepal.Length), <span class="fu">max</span>(iris<span class="sc">$</span>Sepal.Length)),</span>
+<span id="cb9-10"><a href="#cb9-10"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(iris<span class="sc">$</span>Sepal.Width), <span class="fu">max</span>(iris<span class="sc">$</span>Sepal.Width)),</span>
+<span id="cb9-11"><a href="#cb9-11"></a>     <span class="at">xlab =</span> <span class="st">"Sepal.Length"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12"></a>     <span class="at">ylab =</span> <span class="st">"Sepal.Width"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">levels</span>(iris<span class="sc">$</span>Species), <span class="at">col =</span> species_palette, <span class="at">pch =</span> <span class="dv">21</span>, <span class="at">pt.bg =</span> species_palette, <span class="at">cex =</span> <span class="fl">1.2</span>, <span class="at">title =</span> <span class="st">"Species"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="fu">grid</span>(<span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="st">"dotted"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-2-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">ggplot</span>(iris,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb10-4"><a href="#cb10-4"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb10-5"><a href="#cb10-5"></a>                     <span class="at">fill =</span> Species,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>                     <span class="at">size =</span> Petal.Width)) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb10-8"><a href="#cb10-8"></a>             <span class="at">col =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="grammar-of-graphic-gg" class="slide level2">
+<h2>Grammar of graphic (<code>gg</code>)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment highlight-red">
+<ul>
+<li>Data</li>
+<li>Aesthetics - Visual characteristics (e.g., x, y, size)</li>
+<li>Geometry - How to represent the data (e.g., lines, point, boxplot)</li>
+</ul>
+</div>
+<ul>
+<li>Statistics - What statistics to show</li>
+<li>Facets - Split the data</li>
+<li>Coordinates - Position of the geometry</li>
+<li>Themes - Visual changes</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>,</span>
+<span id="cb11-2"><a href="#cb11-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>AESTHETICS<span class="sc">&gt;</span>)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  geom_<span class="sc">&lt;</span>GEOMETRY<span class="sc">&gt;</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---data" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Data</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-4-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---aesthetics" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Aesthetics</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="NA"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb13-2"><a href="#cb13-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>                     <span class="at">y =</span> Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-5-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---geometry" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Geometry</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb14-2"><a href="#cb14-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-6-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---geometry-1" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Geometry</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb15-2"><a href="#cb15-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">col =</span> Species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-7-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---statistics" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Statistics</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb16-2"><a href="#cb16-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb16-3"><a href="#cb16-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-8-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---statistics-1" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Statistics</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb17-2"><a href="#cb17-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb17-4"><a href="#cb17-4"></a>                     <span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-199-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---facets" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Facets</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb18-2"><a href="#cb18-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb18-4"><a href="#cb18-4"></a>                     <span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-9-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---coordinates" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Coordinates</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb19-2"><a href="#cb19-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb19-3"><a href="#cb19-3"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb19-4"><a href="#cb19-4"></a>                     <span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species)<span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-10-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---themes" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Themes</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb20-2"><a href="#cb20-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb20-3"><a href="#cb20-3"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb20-4"><a href="#cb20-4"></a>                     <span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-11-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---themes-1" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Themes</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb21-2"><a href="#cb21-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb21-4"><a href="#cb21-4"></a>                     <span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-12-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---themes-2" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Themes</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb22-2"><a href="#cb22-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb22-3"><a href="#cb22-3"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb22-4"><a href="#cb22-4"></a>                     <span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species) <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a>  <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"red"</span>),</span>
+<span id="cb22-11"><a href="#cb22-11"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>, <span class="at">color =</span> <span class="st">"pink"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-13-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---extra-tips" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Extra tips</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb23-2"><a href="#cb23-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb23-3"><a href="#cb23-3"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb23-4"><a href="#cb23-4"></a>                     <span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species)<span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>  <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"red"</span>),</span>
+<span id="cb23-11"><a href="#cb23-11"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>, <span class="at">color =</span> <span class="st">"pink"</span>)) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sepal"</span>, <span class="at">x =</span> <span class="st">"Length"</span> , <span class="at">y =</span> <span class="st">"Width"</span>, <span class="at">subtitle =</span> <span class="st">"relationship between width</span><span class="sc">\n</span><span class="st">and length"</span>, <span class="at">caption =</span> <span class="st">"Caption appear here"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-14-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-plot-using-ggplot2---extra-tips-1" class="slide level2">
+<h2>Let’s plot using <code>ggplot2</code> - <em>Extra tips</em></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
+<span id="cb24-2"><a href="#cb24-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
+<span id="cb24-3"><a href="#cb24-3"></a>                     <span class="at">y =</span> Sepal.Width,</span>
+<span id="cb24-4"><a href="#cb24-4"></a>                     <span class="at">col =</span> Species)) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species)<span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a>  <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"red"</span>),</span>
+<span id="cb24-11"><a href="#cb24-11"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>, <span class="at">color =</span> <span class="st">"pink"</span>)) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sepal"</span>, <span class="at">x =</span> <span class="st">"Length"</span> , <span class="at">y =</span> <span class="st">"Width"</span>, <span class="at">subtitle =</span> <span class="st">"relationship between width</span><span class="sc">\n</span><span class="st">and length"</span>, <span class="at">caption =</span> <span class="st">"Caption appear here"</span>) <span class="sc">+</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"forestgreen"</span>, <span class="st">"firebrick"</span>, <span class="st">"burlywood"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="part2_files/figure-revealjs/bag-15-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <p><img src="../../assets/images/SU_black.svg" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
-<aside><div>
-<p>source: <a href="https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html" class="smaller">datasauRus</a></p>
-</div></aside></section>
+</section>
     </div>
   </div>
 

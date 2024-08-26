@@ -312,7 +312,7 @@
     "href": "MATERIAL/slides/part2.html#data-visulalisation",
     "title": "Data handling and visualisation in R",
     "section": "Data visulalisation",
-    "text": "Data visulalisation\nIt is very important to look at the data.  Totally different data might have similar statistics…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstatistics\nvalue\n\n\n\n\nmean_x\n54.27\n\n\nmean_y\n47.83\n\n\nsd_x\n16.77\n\n\nsd_y\n26.94\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsource: datasauRus"
+    "text": "Data visulalisation\nIt is very important to look at the data.  Totally different data might have similar statistics…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstatistics\nvalue\n\n\n\n\nmean_x\n54.27\n\n\nmean_y\n47.83\n\n\nsd_x\n16.77\n\n\nsd_y\n26.94\n\n\n\n\n\n\n\n\n\n\n\nsource: datasauRus"
   },
   {
     "objectID": "MATERIAL/slides/part2.html#arrange-the-data-with-dyplr",
@@ -320,5 +320,110 @@
     "title": "Data handling and visualisation in R",
     "section": "Arrange the data with dyplr",
     "text": "Arrange the data with dyplr\ndplyr simplifies the data manipulation with self-explanatory functions:\n\nfilter observations based on their values\nmutate a new column as a function of others\nselect variables based on their names\ngroup_by variable\nsummarise the data\n\n\niris %&gt;%\n  dplyr::filter(Petal.Length &gt;= 1.4) %&gt;%\n  dplyr::mutate(Sepal_Ratio = Sepal.Length/Sepal.Width) %&gt;%\n  dplyr::select(Species, Sepal_Ratio) %&gt;% # equaivalent to select(-c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width))\n  dplyr::group_by(Species) %&gt;%\n  dplyr::summarise(Average_ratio = mean(Sepal_Ratio),\n                   standard_deviation = sd(Sepal_Ratio))"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#visualise-the-data-with-ggplot2",
+    "href": "MATERIAL/slides/part2.html#visualise-the-data-with-ggplot2",
+    "title": "Data handling and visualisation in R",
+    "section": "Visualise the data with ggplot2",
+    "text": "Visualise the data with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\nspecies_palette &lt;- c(\"#F8766D\", \"#00BA38\", \"#619CFF\")\nsize_vector &lt;- iris$Petal.Width\nplot(x = iris$Sepal.Length,\n     y = iris$Sepal.Width,\n     col = species_palette[iris$Species],\n     bg = species_palette[iris$Species],\n     pch = 21,\n     cex = size_vector,\n     xlim = c(min(iris$Sepal.Length), max(iris$Sepal.Length)),\n     ylim = c(min(iris$Sepal.Width), max(iris$Sepal.Width)),\n     xlab = \"Sepal.Length\",\n     ylab = \"Sepal.Width\")\nlegend(\"topright\", legend = levels(iris$Species), col = species_palette, pch = 21, pt.bg = species_palette, cex = 1.2, title = \"Species\")\ngrid(lwd = 1, lty = \"dotted\")\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggplot2)\nggplot(iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     fill = Species,\n                     size = Petal.Width)) +\n  geom_point(shape = 21,\n             col = 1) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#grammar-of-graphic-gg",
+    "href": "MATERIAL/slides/part2.html#grammar-of-graphic-gg",
+    "title": "Data handling and visualisation in R",
+    "section": "Grammar of graphic (gg)",
+    "text": "Grammar of graphic (gg)\n\n\n\n\nData\nAesthetics - Visual characteristics (e.g., x, y, size)\nGeometry - How to represent the data (e.g., lines, point, boxplot)\n\n\n\nStatistics - What statistics to show\nFacets - Split the data\nCoordinates - Position of the geometry\nThemes - Visual changes\n\n\n\nggplot(data = &lt;DATA&gt;,\n       mapping = aes(&lt;AESTHETICS&gt;)) +\n  geom_&lt;GEOMETRY&gt;()"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---data",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---data",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Data",
+    "text": "Let’s plot using ggplot2 - Data\n\n\n\nggplot(data = iris)"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---aesthetics",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---aesthetics",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Aesthetics",
+    "text": "Let’s plot using ggplot2 - Aesthetics\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width))"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---geometry",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---geometry",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Geometry",
+    "text": "Let’s plot using ggplot2 - Geometry\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width)) +\n  geom_point()"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---geometry-1",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---geometry-1",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Geometry",
+    "text": "Let’s plot using ggplot2 - Geometry\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width)) +\n  geom_point(mapping = aes(col = Species))"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---statistics",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---statistics",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Statistics",
+    "text": "Let’s plot using ggplot2 - Statistics\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width)) +\n  geom_point(mapping = aes(col = Species)) +\n  stat_smooth(method = \"lm\")"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---facets",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---facets",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Facets",
+    "text": "Let’s plot using ggplot2 - Facets\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  facet_wrap(~Species)"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---coordinates",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---coordinates",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Coordinates",
+    "text": "Let’s plot using ggplot2 - Coordinates\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  facet_wrap(~Species)+\n  coord_fixed(xlim = c(4,8), ylim = c(0,5))"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---themes",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---themes",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Themes",
+    "text": "Let’s plot using ggplot2 - Themes\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  facet_wrap(~Species) +\n  coord_fixed(xlim = c(4,8), ylim = c(0,5)) +\n  theme_light()"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---themes-1",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---themes-1",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Themes",
+    "text": "Let’s plot using ggplot2 - Themes\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  facet_wrap(~Species) +\n  coord_fixed(xlim = c(4,8), ylim = c(0,5)) +\n  theme_light() +\n  theme(axis.line = element_line(color = \"red\"))"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---themes-2",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---themes-2",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Themes",
+    "text": "Let’s plot using ggplot2 - Themes\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  facet_wrap(~Species) +\n  coord_fixed(xlim = c(4,8), ylim = c(0,5)) +\n  theme_light() +\n  theme(axis.line = element_line(color = \"red\"),\n        strip.text = element_text(size = 13, color = \"pink\"))"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---extra-tips",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---extra-tips",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Extra tips",
+    "text": "Let’s plot using ggplot2 - Extra tips\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  facet_wrap(~Species)+\n  coord_fixed(xlim = c(4,8), ylim = c(0,5)) +\n  theme_light() +\n  theme(axis.line = element_line(color = \"red\"),\n        strip.text = element_text(size = 13, color = \"pink\")) +\n  labs(title = \"Sepal\", x = \"Length\" , y = \"Width\", subtitle = \"relationship between width\\nand length\", caption = \"Caption appear here\")"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---extra-tips-1",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---extra-tips-1",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Extra tips",
+    "text": "Let’s plot using ggplot2 - Extra tips\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\") +\n  facet_wrap(~Species)+\n  coord_fixed(xlim = c(4,8), ylim = c(0,5)) +\n  theme_light() +\n  theme(axis.line = element_line(color = \"red\"),\n        strip.text = element_text(size = 13, color = \"pink\")) +\n  labs(title = \"Sepal\", x = \"Length\" , y = \"Width\", subtitle = \"relationship between width\\nand length\", caption = \"Caption appear here\") +\n  scale_color_manual(values = c(\"forestgreen\", \"firebrick\", \"burlywood\"))"
+  },
+  {
+    "objectID": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---statistics-1",
+    "href": "MATERIAL/slides/part2.html#lets-plot-using-ggplot2---statistics-1",
+    "title": "Data handling and visualisation in R",
+    "section": "Let’s plot using ggplot2 - Statistics",
+    "text": "Let’s plot using ggplot2 - Statistics\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\")"
   }
 ]
