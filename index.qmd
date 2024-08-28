@@ -17,7 +17,7 @@ In the [MATERIAL](MATERIAL/index.qmd){.button} tab, slides and exercises can be 
 
 During this introduction, we will learn how to use ![](./assets/images/Rlogo.svg){height=1.5em style=margin-bottom;} in ![](./assets/images/RSTUDIO.png){height=1.5em style=margin-bottom;} to handle data.
 
-Install [R](https://ftp.acc.umu.se/mirror/CRAN/){target="_blank"} and [R studio](https://posit.co/download/rstudio-desktop/){target="_blank"} before the start of the lecture !
+Install [R](https://www.r-project.org/){target="_blank"} and [R studio](https://posit.co/download/rstudio-desktop/){target="_blank"} before the start of the lecture !
 
 ----
 
