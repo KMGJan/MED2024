@@ -538,4 +538,5 @@ ggplot(data = acartia,
 #| message: false
 #| warning: false
 ```
+
 :::

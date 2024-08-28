@@ -494,8 +494,15 @@ output == abundance
 
 ##  [Importing data in {{< fa brands r-project >}}]{.no-print} [Importing data in **R** ]{.print-only}
 
-More often we enter our data in spreadsheets. We then need to import our data in [{{< fa brands r-project >}}]{.no-print} [**R**]{.print-only} to process them.<br>
+::: print-only
+More often we enter our data in spreadsheets. We then need to import our data in **R** to process them.<br>
 To do so, we use the `read.*` function family.
+:::
+
+::: no-print
+More often we enter our data in spreadsheets. We then need to import our data in {{< fa brands r-project >}} to process them.<br>
+To do so, we use the `read.*` function family.
+:::
 
 A typical data import protocol looks like this:
 
