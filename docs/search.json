@@ -425,5 +425,26 @@
     "title": "Data handling and visualisation in R",
     "section": "Let’s plot using ggplot2 - Statistics",
     "text": "Let’s plot using ggplot2 - Statistics\n\n\n\nggplot(data = iris,\n       mapping = aes(x = Sepal.Length,\n                     y = Sepal.Width,\n                     col = Species)) +\n  geom_point() +\n  stat_smooth(method = \"lm\")"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part2.html",
+    "href": "MATERIAL/tutorial/part2.html",
+    "title": "Tutoial - Part 2 TutoRial - Part 2",
+    "section": "",
+    "text": "Pipes, expressed as %&gt;% or |&gt;, are very useful and make our code clearer. Using pipes, our data flow from one function to another.\n\n\n\nRewrite these chunks of code using the pipes\n\n\nsum(c(2.2,4.1,2,pi))\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nc(2.2,4.1,2,pi) |&gt; sum()\n# OR\nc(2.2,4.1,2,pi) %&gt;% sum()\n\n\n\n\n\n\nround(sum(c(2.2,4.1,2,pi)))\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nc(2.2,4.1,2,pi) |&gt; sum() |&gt; round()\n# OR\nc(2.2,4.1,2,pi) %&gt;% sum() %&gt;% round()\n\n\n\n\n\n\nround(sum(c(2.2,4.1,2,pi)), digits = 3)\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nc(2.2,4.1,2,pi) |&gt; sum() |&gt; round(digits = 3)\n# OR\nc(2.2,4.1,2,pi) %&gt;% sum() %&gt;% round(digits = 3)"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part2.html#pipes",
+    "href": "MATERIAL/tutorial/part2.html#pipes",
+    "title": "Tutoial - Part 2 TutoRial - Part 2",
+    "section": "",
+    "text": "Pipes, expressed as %&gt;% or |&gt;, are very useful and make our code clearer. Using pipes, our data flow from one function to another.\n\n\n\nRewrite these chunks of code using the pipes\n\n\nsum(c(2.2,4.1,2,pi))\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nc(2.2,4.1,2,pi) |&gt; sum()\n# OR\nc(2.2,4.1,2,pi) %&gt;% sum()\n\n\n\n\n\n\nround(sum(c(2.2,4.1,2,pi)))\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nc(2.2,4.1,2,pi) |&gt; sum() |&gt; round()\n# OR\nc(2.2,4.1,2,pi) %&gt;% sum() %&gt;% round()\n\n\n\n\n\n\nround(sum(c(2.2,4.1,2,pi)), digits = 3)\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nc(2.2,4.1,2,pi) |&gt; sum() |&gt; round(digits = 3)\n# OR\nc(2.2,4.1,2,pi) %&gt;% sum() %&gt;% round(digits = 3)"
+  },
+  {
+    "objectID": "MATERIAL/tutorial/part2.html#tidy-the-data-with-tidyr",
+    "href": "MATERIAL/tutorial/part2.html#tidy-the-data-with-tidyr",
+    "title": "Tutoial - Part 2 TutoRial - Part 2",
+    "section": "Tidy the data with tidyr",
+    "text": "Tidy the data with tidyr\nAs seen in the slides, a tidy table has:\n\nEach variable in its own column\nEach observation in its own row\n\nTo reach this, tidyr has 4 key functions:\n\npivot_longer\npivot_wider\nunite\nseparate\n\n\nExercises\n\nIf this is not done yet, download the dataset zooplankton_seasonality.csv\n\n\n\n  Click here to download the dataset zooplankton_seasonality.csv\n\n\n\nImport the dataset in your environment\nIs this dataset a tidy dataset?\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n\n\nFirst 6 rows of the dataset zooplankton_seasonality\n\n\n\n\n\n\n\n\n\n\n\nMonth_abb\nYear\nStation\nCoordinates\nGroup\nTaxa\nBiomass\n\n\n\n\nJan\n2009\nBY15\n20.05000/57.33333\nCopepoda\nAcartia\n6.650319\n\n\nJan\n2009\nBY31\n18.23333/58.58812\nCopepoda\nAcartia\n1.816994\n\n\nJan\n2009\nBY5\n15.98333/55.25000\nCopepoda\nAcartia\n5.562097\n\n\nJan\n2009\nBY15\n20.05000/57.33333\nCopepoda\nCentropages\n5.738562\n\n\nJan\n2009\nBY31\n18.23333/58.58812\nCopepoda\nCentropages\n1.228759\n\n\nJan\n2009\nBY5\n15.98333/55.25000\nCopepoda\nCentropages\n14.405224\n\n\n\n\n\n Each variable has its own column   Each variable has its own row   Coordinates has 2 values\n\n\n\n\n\nSeparate the column Coordinates in 2 news columns: Longitude and Latitude\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n\n\nFirst 6 rows of the dataset zooplankton_seasonality with the column Coordinates separated as Longitude and Latitude\n\n\n\n\n\n\n\n\n\n\n\n\nMonth_abb\nYear\nStation\nLongitude\nLatitude\nGroup\nTaxa\nBiomass\n\n\n\n\nJan\n2009\nBY15\n20.05000\n57.33333\nCopepoda\nAcartia\n6.650319\n\n\nJan\n2009\nBY31\n18.23333\n58.58812\nCopepoda\nAcartia\n1.816994\n\n\nJan\n2009\nBY5\n15.98333\n55.25000\nCopepoda\nAcartia\n5.562097\n\n\nJan\n2009\nBY15\n20.05000\n57.33333\nCopepoda\nCentropages\n5.738562\n\n\nJan\n2009\nBY31\n18.23333\n58.58812\nCopepoda\nCentropages\n1.228759\n\n\nJan\n2009\nBY5\n15.98333\n55.25000\nCopepoda\nCentropages\n14.405224\n\n\n\n\n\n\nlibrary(tidyr)\nzooplankton |&gt; separate(Coordinates, into = c(\"Longitude\", \"Latitude\"), sep = \"/\")"
   }
 ]

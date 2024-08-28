@@ -1,0 +1,212 @@
+---
+title: "[Tuto{{< fa brands r-project >}}ial - Part 2]{.no-print} [TutoRial - Part 2]{.print-only}"
+subtitle: "Marine Ecosystem Dynamics - 2024"
+author: "Kinlan M.G. Jan"
+format:
+  html:
+    html-math-method: katex
+    toc: true
+    toc-title: "Tuto{{< fa brands r-project >}}ial 2"
+    toc-depth: 3
+  pdf:
+    pdf-engine: weasyprint
+css: tutorial.css
+format-links: [pdf]
+---
+
+
+## Pipes
+
+Pipes, expressed as `%>%` or `|>`, are very useful and make our code clearer. Using pipes, our data *flow* from one function to another.
+
+### Exercises
+
+- Rewrite these chunks of code using the pipes
+
+```{r}
+#| echo: true
+#| eval: false
+sum(c(2.2,4.1,2,pi))
+```
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+c(2.2,4.1,2,pi) |> sum()
+# OR
+c(2.2,4.1,2,pi) %>% sum()
+```
+:::
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+round(sum(c(2.2,4.1,2,pi)))
+```
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+c(2.2,4.1,2,pi) |> sum() |> round()
+# OR
+c(2.2,4.1,2,pi) %>% sum() %>% round()
+```
+:::
+:::
+
+
+```{r}
+#| echo: true
+#| eval: false
+round(sum(c(2.2,4.1,2,pi)), digits = 3)
+```
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+c(2.2,4.1,2,pi) |> sum() |> round(digits = 3)
+# OR
+c(2.2,4.1,2,pi) %>% sum() %>% round(digits = 3)
+```
+:::
+:::
+
+## Tidy the data with [`tidyr`]{.larger}
+
+As seen in the slides, a tidy table has:
+
+1. Each variable in its own column
+2. Each observation in its own row
+
+To reach this, `tidyr` has 4 key functions:
+
+1. `pivot_longer`
+2. `pivot_wider`
+3. `unite`
+4. `separate`
+
+### Exercises
+
+* If this is not done yet, download the dataset `zooplankton_seasonality.csv`
+
+```{r, echo=FALSE, results='asis'}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+
+if (knitr::is_html_output()) {
+  library("downloadthis");library(PlanktonData)
+  data(zooplankton)
+  zooplankton  |> 
+    download_this(
+    output_name = "zooplankton_seasonality",
+    output_extension = ".csv",
+    button_label = " Click here to download the dataset zooplankton_seasonality.csv",
+    button_type = "primary",
+    has_icon = TRUE,
+    csv2 = FALSE,
+    icon = "fa fa-save")
+} else {
+  cat("You can download the dataset on [GitHub](https://github.com/KMGJan/MED2024/tree/main/MATERIAL/tutorial/assets)")
+}
+```
+
+
+* Import the dataset in your environment
+
+* Is this dataset a tidy dataset?
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: false
+#| eval: true
+PlanktonData::zooplankton |> head() |> kableExtra::kable(caption = "First 6 rows of the dataset zooplankton_seasonality")
+```
+
+{{< fa check >}} Each variable has its own column <br>
+{{< fa check >}} Each variable has its own row <br>
+{{< fa xmark >}} Coordinates has 2 values
+:::
+:::
+
+* Separate the column `Coordinates` in 2 news columns: `Longitude` and `Latitude`
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: false
+#| eval: true
+library(tidyr)
+PlanktonData::zooplankton |> separate(Coordinates, into = c("Longitude", "Latitude"), sep = "/") |>  head() |> kableExtra::kable(caption = "First 6 rows of the dataset zooplankton_seasonality/nwith the column Coordinates separated as Longitude and Latitude")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyr)
+zooplankton |>
+  separate(Coordinates, into = c("Longitude", "Latitude"), sep = "/")
+```
+:::
+:::
+
+* Combine the column `Group`and `Taxa` into a new column `Group_Taxa``
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: false
+#| eval: true
+library(tidyr)
+PlanktonData::zooplankton |>
+  separate(Coordinates, into = c("Longitude", "Latitude"), sep = "/") |>  
+  unite("Group_Taxa", c(Group, Taxa)) |> 
+  head() |> 
+  kableExtra::kable(caption = "First 6 rows of the dataset zooplankton_seasonality/nwith the column Coordinates separated as Longitude and Latitude/nand the columns Group and Taxa combined as Group_Taxa")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyr)
+zooplankton |>
+  separate(Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+    unite("Group_Taxa", c(Group, Taxa))
+```
+:::
+:::
+
+* Create a wide table with columns having the `Biomass` values for each `Group_Taxa``
+
+::: no-print
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: false
+#| eval: true
+library(tidyr)
+PlanktonData::zooplankton |>
+  separate(Coordinates, into = c("Longitude", "Latitude"), sep = "/") |>  
+  unite("Group_Taxa", c(Group, Taxa)) |> 
+  head() |> 
+  kableExtra::kable(caption = "First 6 rows of the dataset zooplankton_seasonality/nwith the column Coordinates separated as Longitude and Latitude/nand the columns Group and Taxa combined as Group_Taxa\nand transformed as a wide dataframe with the Biomass values")
+```
+
+```{r}
+#| echo: true
+#| eval: false
+library(tidyr)
+zooplankton |>
+  separate(Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+    unite("Group_Taxa", c(Group, Taxa))
+```
+:::
+:::

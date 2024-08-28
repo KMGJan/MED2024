@@ -12,6 +12,7 @@ code, pre {
     font-family: "Share Tech Mono", Sans-Serif;
 }
 
+
 /* pdf */
 
 @media print {
@@ -40,7 +41,7 @@ code, pre {
       text-align: left;
     }
   }
-  
+
   .no-print {
     display: none;
   }
